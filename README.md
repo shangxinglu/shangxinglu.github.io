@@ -2,7 +2,7 @@
 
 ## this是什么
 
- this在JavaScript中，就是一个指向调用函数的对象的指针
+    this在JavaScript中，就是一个指向调用函数的对象的指针
 
  ## this的绑定
 
