@@ -1,37 +1,130 @@
-## Welcome to GitHub Pages
+# 聊聊this
 
-You can use the [editor on GitHub](https://github.com/shangxinglu/shangxinglu.github.io/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+## this是什么
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+ this在JavaScript中，就是一个指向调用函数的对象的指针
 
-### Markdown
+ ## this的绑定
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+    this目前的绑定方式有以下4中，优先级从低到高
 
-```markdown
-Syntax highlighted code block
+### 1.默认绑定
 
-# Header 1
-## Header 2
-### Header 3
+```javascript
+var val = 10;
+function f1(){
+    console.log(this.val);
+    function f2(){
+        console.log(this.val);
+    }
+    f2(); // 10
+}
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+f1(); // 10 
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+默认情况下，this指向全局对象，上述代码中val在全局环境下由var声明的变量，会作为全局对象的属性，this默认指向全局对象window，所以this.val===window.val,f2函数中的val也是同理
 
-### Jekyll Themes
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/shangxinglu/shangxinglu.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+### 2.隐式绑定
 
-### Support or Contact
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+```javascript
+var val = 10;
+function f1(){
+    console.log(this.val);
+    function f2(){
+        console.log(this.val);
+    }
+    f2(); // 10
+}
+
+const obj = {
+    val:200,
+    f1,
+};
+
+obj.f1(); // 200
+```
+当函数在被作为对象方法调用时，函数的this会别隐式的绑定到这个对象，所以f1会打印200,而不是10，有f2是直接调用，并没有作为对象方法，所以this默认绑定到全局对象，打印10
+
+### 3.显示绑定
+
+JavaScript提供了3中显示绑定的方式
+
+#### 1.bind()
+
+```javascript
+var val = 10;
+
+const obj = {val:200};
+
+function f1(){
+    console.log(this.val);
+    function f2(){
+        console.log(this.val);
+    }
+    f2(); // 10
+}
+
+const f2 = f1.bind(obj);
+
+f2(); // 200
+
+```
+bind函数返回一个将this强制绑定为参数对象的函数
+
+#### 2.apply()
+
+```javascript
+var val = 10;
+
+const obj = {val:200};
+
+function f1(){
+    console.log(this.val);
+    function f2(){
+        console.log(this.val);
+    }
+    f2(); // 10
+}
+
+f1.apply(obj); // 200
+
+```
+apply会直接调用函数并将第一个参数绑定到函数的this
+
+#### 3.call()
+
+```javascript
+var val = 10;
+
+const obj = {val:200};
+
+function f1(){
+    console.log(this.val);
+    function f2(){
+        console.log(this.val);
+    }
+    f2(); // 10
+}
+
+f1.call(obj); // 200
+
+```
+call会直接调用函数并将第一个参数绑定到函数的this,call与apply几乎一直，只有给函数传参的方式不同，apply的第二参数为数组(apply(context,[arg1,arg2]))，函数的参数都会放入到里面，而call是将参数进行列举(call(context,arg1,arg2))
+
+### 4.new绑定
+
+```javascript
+var val = 10;
+
+function f1(){
+    this.val = 200;
+}
+
+const obj = new f1;
+
+console.log(obj.val);
+```
+
