@@ -5,3 +5,7 @@
 ## [了解一下JavaScript运行一段代码的过程](/js/running-process)
 
 ## [实现一个Promise](/js/promise)
+
+## [Blob](/js/Blob)
+
+## [Stream](/js/Stream)
