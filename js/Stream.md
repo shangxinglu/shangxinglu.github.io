@@ -1,6 +1,6 @@
 # Stream
 
-## 了解Stream
+## Stream是什么
 
 Stream是将网络资源拆分成小块，可以让应用在数据一到达就可用，而无需全部加载完毕
 
@@ -9,7 +9,7 @@ Stream是将网络资源拆分成小块，可以让应用在数据一到达就�
 
 <br/>
 
-## Stream使用
+## Stream如何使用
 
 Stream有三种类型
 
@@ -26,6 +26,22 @@ Stream有三种类型
 <br/>
 
 #### 可读流的创建
+
+  ReadableStream()构造器可以创建并返回包含处理函数的可读流实例，它有两参数:
+    
+    underlyingSource:
+        这是一个对象，包含几个方法
+
+        start(controller)
+            当对象被构造时会立即调用
+
+        pull(controller) 可选
+            当流内部队列不满时，会重复调用这个方法，直到补满
+
+        cancel(reson) 可选
+            当应用程序表示将取消流时，会调用此方法
+
+    queueingStrategy:
 
 ```javascript
 
@@ -47,6 +63,8 @@ Stream会被拆分成块，翻入到一个队列中，队列占用的内存有�
 
 <br/>
 
-## Stream的使用场景
+## Stream的使用场景有哪些
 
 Stream可以用于视频处理、数据压缩、图像编码、JSON解析
+
+## 使用Stream去完成一些数据的

@@ -1,4 +1,45 @@
-# 实现一个Promise
+# Promise
+
+## Promise是什么
+
+    Promise是一种异步编程的解决方案，同时JavaScript通过Promise将任务队列管理交到了用户手中
+
+<br/>
+
+## Promise的使用
+
+<br/>
+
+### then()
+
+<br/>
+
+### catch
+
+<br/>
+
+### Promise.resolve()
+
+<br/>
+
+### Promise.reject()
+
+<br/>
+
+### Promise.all()
+
+<br/>
+
+### Promise.race()
+
+
+<br/>
+
+## Promise运行过程
+
+<br/>
+
+## 实现Promise
 
 ```javascript
 class MyPromise {
