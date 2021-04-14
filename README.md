@@ -9,3 +9,5 @@
 ## [Blob](/js/Blob)
 
 ## [Stream](/js/Stream)
+
+## [Generator](/js/Generator)
