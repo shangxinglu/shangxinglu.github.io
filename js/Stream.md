@@ -59,8 +59,17 @@ Stream有三种类型
             size(chunk)
                 包含参数chunk的方法，表示每个块使用的大小，单位字节
 
-
 ```javascript
+
+const content = '我是一个文件!!!!!!!!!!!';
+
+//创建
+
+const read = new ReadableStream({
+    start(controller){
+        controller.enqueue(content);
+    }
+});
 
 ```
 
@@ -125,6 +134,82 @@ Stream有三种类型
 
 <br/>
 
+  locked
+
+    只读
+    用来判断当前可读流是否被读取器锁定
+
+```javascript
+
+const content = '我是一个文件!!!!!!!!!!!';
+
+const read = new ReadableStream({
+    start(controller){
+        controller.enqueue(content);
+    }
+});
+
+console.log(read.locked); // false
+
+read.getReader();
+
+console.log(read.locked); // true
+
+```
+
+<br/>
+
+  cancel()
+
+    用来取消读取流，返回一个Promise对象，注意需要在可读流在未锁定状态调用
+
+```javascript
+const content = '我是一个文件!!!!!!!!!!!';
+
+const readableStream = new ReadableStream({
+    start(controller){
+        controller.enqueue(content);
+    },
+
+    cancel(reason){
+        console.log(reason);
+    }
+    
+});
+
+
+readableStream.cancel('reason'); // reason
+
+```
+
+<br/>
+
+  getIterator()
+
+    别名 [@@asyncIterator]
+    创建一个异步的可读流迭代器，并将流锁定
+
+
+<br/>
+
+  getReader()
+    
+    创建一个读取器并将流锁定于其上
+
+<br/>
+
+  pipeThrough()
+
+    用来将当前管道流输入到转换流、可写流、可读流
+
+  pipeTo()
+
+    将当前可读流输出到给定的可写流，并且返回一个Promise对象
+
+  tee()
+
+    会将当前可读流锁定，并返回两个当前可读流的分支，可独立操作
+    
 
 ### 可写流
 
