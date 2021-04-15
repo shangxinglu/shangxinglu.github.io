@@ -7,11 +7,133 @@
 <br/>
 
 ## Promise的使用
+    
+    Promise有3中状态: penging(待定)、fulfilled(已兑现)、rejected(已拒绝)，一旦当状态变为fulfilled或rejected，就不会在发生变化
+
+    Promise构造函数有一个参数，是一个函数，这个函数有两个参数resolve和reject
+
+    resolve:
+        是一个函数，将Promise对象的状态改为fulfilled
+
+    reject:
+        是一个函数，将Promise对象的状态改为rejected
+
+```javascript
+    let res = null,
+    rej = null;
+    const p = new Promise((resolve,reject)=>{
+        res = resolve,
+        rej = reject;
+    });
+    console.log(p); // Promise{pending}
+
+    res();
+
+    console.log(p); //Primise{fulfilled}
+
+    rej();
+
+    console.log(p); //Primise{fulfilled}
+
+```
 
 <br/>
 
 ### then()
 
+    当Promise对象状态变为fulfilled或rejected时，会调用后面的then方法
+
+    then方法有两个参数，都是函数，分别在状态未fulfilled和rejected时调用
+
+```javascript
+    const p = new Promise((resolve,reject)=>{
+       resolve()
+    }).then(()=>{
+        console.log('fulfilled');
+    }); // fulfilled
+
+    const p1 = new Promise((resolve,reject)=>{
+       reject()
+    }).then(null,()=>{
+        console.log('rejected');
+    }); // rejected
+```
+    then调用后会会返回一个新的Promise，他的两个参数方法执行会改变这个Promsie的状态和返回值
+
+```javascript
+    let res = null;
+    const p = new Promise(resolve=>{
+        res = resolve;
+    });
+
+    const p1 = p.then(()=>{});
+
+    console.log(p===p1); // false
+
+    console.log(p1); // Promise{pending}
+
+    res();
+
+    console.log(p); // Promise{fulfilled}
+    console.log(p1); // Promise{pending}
+
+```
+
+    当then中的函数接受的参数为一个Promise对象，会有几种情况
+
+    Promise(后面简称p1)为fulfilled状态，then返回的Promise对象(后面简称p2)的状态会变为fulfilled，p1传给then回调函数的参数值作为p2的then回调函数的参数值
+
+```javascript
+    const p1= new Promise(resolve=>{
+        resolve('p1');
+    });
+
+    const p2= new Promise(resolve=>{
+        resolve(p1);
+    });
+
+    p2.then(res=>{
+        console.log(res); // p1
+    });
+
+```
+
+    Promise(后面简称p1)为rejected状态，then返回的Promise对象(后面简称p2)的状态会变为rejected，p1传给then回调函数的参数值作为p2的then回调函数的参数值
+
+```javascript
+    const p1= new Promise((resolve,reject)=>{
+        reject('p1');
+    });
+
+    p1.catch(error=>{});
+
+    const p2= new Promise((resolve,reject)=>{
+        resolve(p1);
+    });
+
+    p2.catch(res=>{
+        console.log(res); // p1
+    });
+
+```
+
+    Promise(后面简称p1)为pending状态，then返回的Promise对象(后面简称p2)的状态会保持pending，当p1发生状态改变，p1的传给then回调函数的参数值传给p2的then回调函数的参数，变为相同状态
+
+```javascript
+    let res = null;
+    const p1= new Promise((resolve,reject)=>{
+        res = resolve;
+    });
+
+    const p2= new Promise((resolve,reject)=>{
+        resolve(p1);
+    });
+
+    p2.then(console.log); // 200
+
+    res(200);
+
+```
 <br/>
 
 ### catch
