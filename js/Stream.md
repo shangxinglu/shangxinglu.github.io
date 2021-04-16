@@ -130,6 +130,55 @@ const read = new ReadableStream({
 
 <br/>
 
+#### ReadableStreamDefaultReader
+
+    ReadableStreamDefaultReader是读取器类型，用来读取流数据
+
+    创建
+        一般会用raderStream.getReader()获取实例，也比较方便也可以用构造函数ReadableStreamDefaultReader创建，有一个参数，是ReadableStream的实例
+
+    属性
+
+        closed
+            如果readableStream被锁定或者被释放返回fulfilled状态的promisep
+            如果报错返回rejected的promisep
+    
+    方法
+
+        read()
+            返回一个promise，用来访问内部队列的下一个块
+    
+        cancel()
+            取消这个readableStream
+
+        releaseLock()
+            释放对这个readableStream的锁定
+
+
+#### ReadableStreamBYOBReader
+
+    ReadableStreamBYOBReader是读取器类型，用来读取开发者提供的流数据
+
+    创建
+        一般会用raderStream.getReader()获取实例，也比较方便也可以用构造函数ReadableStreamBYOBReader创建，有一个参数，是ReadableStream的实例
+
+    属性
+
+        closed 只读
+            如果readableStream被锁定或者被释放返回fulfilled状态的promisep
+            如果报错返回rejected的promisep
+    
+    方法
+
+        read()
+            返回一个promise，用来访问内部队列的下一个块
+    
+        cancel()
+            取消这个readableStream
+
+        releaseLock()
+            释放对这个readableStream的锁定
+
 #### 可读流实例的使用
 
 <br/>
@@ -194,7 +243,31 @@ readableStream.cancel('reason'); // reason
 
   getReader()
     
-    创建一个读取器并将流锁定于其上
+    创建一个读取器并将流锁定于其上，有一个参数，是含有mode属性的对象，
+        mode：
+            byob
+            返回ReadableStreamBYOBReader
+        
+            其他
+            返回ReaderStreamDefaultReader
+
+    
+
+```javascript
+
+    const content = '我是一个文件!!!!!!!!!!!';
+
+    const readableStream = new ReadableStream({
+        start(controller){
+            controller.enqueue(content);
+        }
+    });
+
+    const reader = new ReadableStreamDefaultReader(readableStream);
+
+    reader.read().then(console.log); // {value:'我是一个文件!!!!!!!!!!!',done:false}
+
+```
 
 <br/>
 
@@ -212,6 +285,52 @@ readableStream.cancel('reason'); // reason
     
 
 ### 可写流
+
+    可读流用于流数据写入到目的地，被称为一个水槽的标准对象，该对象有内置的反压和排队功能
+
+#### 可写流的创建
+
+    WritableStream()构造器可以创建并返回包含处理函数的可写流实例，它有两参数:
+    
+    underlyingSource:
+        这是一个对象，包含几个属性和方法
+
+        start(controller)
+            当对象被构造时会立即调用
+            controller是一个WritableStreamDefaultController类型对象
+
+        write(chunk,controller) 可选
+            chunk是要写入的数据块，会被写入基础接收器
+            当流内部队列不满时，会重复调用这个方法，直到补满
+             controller是一个WritableleStreamDefaultController类型对象
+
+        close(controller) 可选
+            参数
+                controller
+                    一个WritableleStreamDefaultController类型对象
+                
+                作用
+                    当块写入完成将会调用此方法，释放对接收器的访问权限所需的一切
+
+                返回值
+                    如果是异步的返回一个promise
+
+        type 可选
+            控制正在处理的可读类型的流，如果值为bytes，则controller将是ReadableByteStreamController，不然为ReadableStreamDefaultController
+
+        autoAllocateChunkSize 可选
+            对于字节流，可以用来打开流的自动分配功能
+
+    queueingStrategy 可选:
+
+        定义流的排队策略的对象，有两个参数
+
+            highWaterMark
+                非负整数，定义了在应用背压之前可以包含在内部队列中的块的总数
+
+            size(chunk)
+                包含参数chunk的方法，表示每个块使用的大小，单位字节    
+
 
 <br/>
 
