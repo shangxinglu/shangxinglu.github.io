@@ -305,28 +305,34 @@ readableStream.cancel('reason'); // reason
              controller是一个WritableleStreamDefaultController类型对象
 
         close(controller) 可选
+            作用
+                当块写入完成将会调用此方法，释放对接收器的访问权限所需的一切
+
             参数
                 controller
                     一个WritableleStreamDefaultController类型对象
-                
-                作用
-                    当块写入完成将会调用此方法，释放对接收器的访问权限所需的一切
+            
+            返回值
+                如果是异步的返回一个promise
 
-                返回值
-                    如果是异步的返回一个promise
+        abort(reson)
+            作用
+                当应用发出关闭流并将其至于错误的信号，将调用此方法，可以清除任何保留资源
 
-        type 可选
-            控制正在处理的可读类型的流，如果值为bytes，则controller将是ReadableByteStreamController，不然为ReadableStreamDefaultController
+            参数
+                reson
+                    错误原因
 
-        autoAllocateChunkSize 可选
-            对于字节流，可以用来打开流的自动分配功能
+             返回值
+                如果是异步的返回一个promise
+
 
     queueingStrategy 可选:
 
         定义流的排队策略的对象，有两个参数
 
             highWaterMark
-                非负整数，定义了在应用背压之前可以包含在内部队列中的块的总数
+                非负整数，定义了在事假反压之前内部队列中的块的总数
 
             size(chunk)
                 包含参数chunk的方法，表示每个块使用的大小，单位字节    

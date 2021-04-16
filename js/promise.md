@@ -79,7 +79,7 @@
 
 ```
 
-    当then中的函数接受的参数为一个Promise对象，会有几种情况
+  当then中的函数接受的参数为一个Promise对象，会有几种情况
 
     Promise(后面简称p1)为fulfilled状态，then返回的Promise对象(后面简称p2)的状态会变为fulfilled，p1传给then回调函数的参数值作为p2的then回调函数的参数值
 
@@ -134,13 +134,62 @@
     res(200);
 
 ```
+
+  当then的回调函数返回一个promise(p1)，这个then返回的promise(p2)的state和result都会跟p1同步，事实上p1!==p2，但是效果上相当于p1===p2，方便理解
+
+```javascript
+    let res = null;
+
+    const p1 = new Promise((resolve, reject) => {
+        // resolve('p1');
+        res = resolve;
+        // reject('p1');
+    });
+
+    const p2 = new Promise(resolve => {
+        resolve('p2');
+
+    }).then(result => {
+        console.log(result);
+        res(2222222);
+        return p1;
+    });
+    
+    p2.then(res => {
+        console.log(res); // 2222222
+        console.log(p1 === p2); // false
+
+    });
+
+```
+
 <br/>
 
-### catch
+### catch()
+
+    catch(call)相当于then(undefined,call)
+
+```javascript
+    const p1 = new Promise((resolve,reject)=>{
+        reject('reject');
+    }).then(undefined,error=>{
+        console.log(error); // reject
+    });
+
+    const p2 = new Promise((resolve,reject)=>{
+        reject('reject');
+    }).catch(error=>{
+        console.log(error); // reject
+    })
+
+```
 
 <br/>
 
 ### Promise.resolve()
+    
+    
+
 
 <br/>
 
