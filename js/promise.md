@@ -58,7 +58,7 @@
         console.log('rejected');
     }); // rejected
 ```
-    then调用后会会返回一个新的Promise，他的两个参数方法执行会改变这个Promsie的状态和返回值
+    then调用后会会返回一个新的promise
 
 ```javascript
     let res = null;
@@ -186,19 +186,84 @@
 
 <br/>
 
-### Promise.resolve()
+### Promise.resolve(value)
     
+    作用
+        将直接返回给定值解析后的fulfilled状态的promise
+
+    参数
+        value
+            任意值
+
+    返回值
+        promise
+    
+  value在一下几种不同类型时，有所区别
+
+    promsie
+        直接返回这个promise对象
+
+```javascript
+    const p1 = new Promise(()=>{});
+    const p2 = Promise.resolve(p1);
+
+    console.log(p1===p2); // true
+
+```
+    thenable对象(有then方法的对象)
+        then方法相当于这个promise的执行器，也就是Promise构造函数的参数，拥有一样的参数，promise的状态会有then方法决定
+
+```javascript
+    let res = null;
+    const obj = {
+        then(resolve, reject) {
+            res = resolve;
+        }
+    };
+
+    const p1 = Promise.resolve(obj);
+
+    // 相当于
+    // Promise.resolve(obj).then(result=>{
+    //     return new Promise(result.then);
+    // })
     
 
+    console.log(p1); //Promise {<pending>}
+    Promise.resolve().then(()=>{
+        res();
+        console.log(p1); //Promise {<fulfilled>}
+    })
+```
+    其他
+        返回给定值的fulfilled状态的promise
 
 <br/>
 
-### Promise.reject()
+### Promise.reject(reson)
 
-<br/>
+    作用
+        返回一个带有拒绝原因的rejected状态的promise
+    
+    参数
+        reson
+            决绝原型
+
+    返回值
+        promise
+<br/>   
 
 ### Promise.all()
 
+    作用
+        用来判断给定的一组promise对象是否都为resolve状态
+    
+    参数
+        iterator
+            一个promise的iterator类型
+
+    返回值
+        promise
 <br/>
 
 ### Promise.race()

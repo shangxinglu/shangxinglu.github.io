@@ -61,15 +61,31 @@ Stream有三种类型
 
 ```javascript
 
-const content = '我是一个文件!!!!!!!!!!!';
+    const content = '我是一个文件!!!!!!!!!!!';
 
-//创建
+    let i = 0;
 
-const read = new ReadableStream({
-    start(controller){
-        controller.enqueue(content);
+    const readableStream = new ReadableStream({
+        start(controller){
+            controller.enqueue(content);
+        },
+
+        pull(controller){
+            controller.enqueue(i++);
+        }
+    });
+
+    const reader = readableStream.getReader();
+
+    async function read(){
+        const result = await reader.read().then(res=>res);
+        console.log(result.value);
+        return;
     }
-});
+
+    read(); // 我是一个文件!!!!!!!!!!!
+    read(); // 0
+    read(); // 1
 
 ```
 
@@ -135,7 +151,7 @@ const read = new ReadableStream({
     ReadableStreamDefaultReader是读取器类型，用来读取流数据
 
     创建
-        一般会用raderStream.getReader()获取实例，也比较方便也可以用构造函数ReadableStreamDefaultReader创建，有一个参数，是ReadableStream的实例
+        一般会用raderStream.getReader()获取实例，比较方便，也可以用构造函数ReadableStreamDefaultReader创建，有一个参数，是ReadableStream的实例
 
     属性
 
@@ -160,13 +176,13 @@ const read = new ReadableStream({
     ReadableStreamBYOBReader是读取器类型，用来读取开发者提供的流数据
 
     创建
-        一般会用raderStream.getReader()获取实例，也比较方便也可以用构造函数ReadableStreamBYOBReader创建，有一个参数，是ReadableStream的实例
+        一般会用raderStream.getReader()获取实例，比较方便，也可以用构造函数ReadableStreamBYOBReader创建，有一个参数，是ReadableStream的实例
 
     属性
 
         closed 只读
-            如果readableStream被锁定或者被释放返回fulfilled状态的promisep
-            如果报错返回rejected的promisep
+            如果readableStream被锁定或者被释放返回fulfilled状态的promise
+            如果报错返回rejected的promise
     
     方法
 
@@ -338,7 +354,133 @@ readableStream.cancel('reason'); // reason
                 包含参数chunk的方法，表示每个块使用的大小，单位字节    
 
 
+```javascript
+    const writableStream = new WritableStream({
+        start(controller){
+            console.log('start');
+        },
+
+        write(chunk,controller){
+            console.log('write',chunk);
+        },
+
+        close(controller){
+            console.log('close');
+        },
+
+        abort(reson){
+            console.log(reson);
+        }
+
+    });
+
+    const writer = writableStream.getWriter(); // write
+
+    writer.write(111); // write 111
+```
+
 <br/>
+
+#### WritableStreamDefaultController的作用
+
+    用来控制WritableStream的状态
+
+#### WritableStreamDefaultController实例怎么创建
+
+    WritableStreamDefaultController实例没有办法手动创建，只会在WritableStream构建过程中自动创建
+
+<br/>
+
+#### ReadableByteStreamController实例的方法
+
+    error()：
+        会导致之后与关联流的任何交互都会出错
+
+<br/>
+
+#### WritableStream实例的使用
+
+    属性
+
+        closed 只读
+            布尔值，表示当前写入流是否锁定写入器
+    
+    方法
+
+        abort()
+            终止写入流，并将其移至错误状态，并丢弃所有剩余的队列数据
+
+        close()
+            关闭流
+        
+        getWriter()
+            会返回一个WritableStreamDefaultWriter写入器实例，同时改写入流会别锁定到这个实例
+    
+
+#### WritableStreamDefaultWriter
+
+    WritableStreamDefaultWriter是写入器类型，用来在流中放入数据
+
+    创建
+        一般会用Writable.getWriter()获取实例，比较方便，也可以用构造函数WritableStreamDefaultWriter创建，有一个参数，是WritableStream的实例
+    
+    属性
+ 
+        closed 只读
+            如果writableStream被关闭或者被释放返回fulfilled状态的promise
+            如果报错返回rejected的promise
+
+        desireSize 只读
+            返回写入流内部队列所需的大小
+        
+        ready 只读
+            返回一个promise，如果状态为fulfilled表示内部对象所需大小从负向正转换，不再施加背压
+
+    方法
+
+        abort()
+            终止写入流，并将其移至错误状态，并丢弃所有剩余的队列数据
+
+        close()
+            关闭流
+
+        releaseLock()
+            释放写入器与写入流的锁定
+
+        write()
+            将数据块写入可写流及其底层接收器，会返回一个promise用来判断写入的成功还是失败
+
+ 
+```javascript
+
+    const writableStream = new WritableStream({
+        start(controller){
+            console.log('start');
+        },
+
+        write(chunk,controller){
+            console.log('write');
+        },
+
+        close(controller){
+            console.log('close');
+        },
+
+        abort(reson){
+            console.log(reson);
+        }
+
+    });
+
+
+    const writer = writableStream.getWriter(); // write
+
+```
+
+
+
+   
+
 
 ### 转换流
 

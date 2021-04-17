@@ -4,7 +4,7 @@
 
 ## [了解一下JavaScript运行一段代码的过程](/js/running-process)
 
-## [Promise](/js/promise)
+## [Promise](/js/Promise)
 
 ## [Blob](/js/Blob)
 
