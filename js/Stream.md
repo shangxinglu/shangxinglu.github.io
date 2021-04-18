@@ -170,6 +170,21 @@ Stream有三种类型
         releaseLock()
             释放对这个readableStream的锁定
 
+```javascript
+
+    const content = '我是一个文件!!!!!!!!!!!';
+
+    const readableStream = new ReadableStream({
+        start(controller){
+            controller.enqueue(content);
+        }
+    });
+
+    const reader = new ReadableStreamDefaultReader(readableStream);
+
+    reader.read().then(console.log); // {value:'我是一个文件!!!!!!!!!!!',done:false}
+
+```
 
 #### ReadableStreamBYOBReader
 
@@ -279,7 +294,7 @@ readableStream.cancel('reason'); // reason
         }
     });
 
-    const reader = new ReadableStreamDefaultReader(readableStream);
+    const reader = readableStream.getReader();
 
     reader.read().then(console.log); // {value:'我是一个文件!!!!!!!!!!!',done:false}
 
@@ -289,11 +304,39 @@ readableStream.cancel('reason'); // reason
 
   pipeThrough()
 
-    用来将当前管道流输入到转换流、可写流、可读流
+    用来将当前管道流输入到转换流或可读可写流
+
+```javascript
+
+
+```
 
   pipeTo()
 
     将当前可读流输出到给定的可写流，并且返回一个Promise对象
+
+```javascript
+    const content = '1234567890';
+
+    const readableStream = new ReadableStream({
+        start(controller){
+            controller.enqueue(content);
+        }
+    });
+
+    const writableStream = new WritableStream({
+        start(){
+            console.log('start');
+        },
+
+        write(chunk,controller){
+            console.log('write',chunk);
+        },
+    });
+
+    readableStream.pipeTo(writableStream); // wirte 1234567890
+
+```
 
   tee()
 
@@ -483,6 +526,7 @@ readableStream.cancel('reason'); // reason
 
 
 ### 转换流
+    转换流是用来组合可读流和可写流
 
 <br/>
 
