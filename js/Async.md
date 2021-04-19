@@ -2,14 +2,73 @@
 
 ## Async函数的作用
 
-Async只是使得异步操作变得更加简单，其实就是Generator的语法糖，主要效果有一下几点
+    异步函数让我们更简便的方式写出异步行为，也可以说是简化基于Promise使用的链式操作
 
-    1. async函数时内置执行器的，不需要向Generator函数一样，需要手动执行，不需要额外的代码
-    
-    2. 将*换成了async，将yield换成了await，语义更加的明确了
-
-    3. async函数的返回值是promise，Generator的返回值是IteratorResult对象，后续操作上更加的灵活
+<br/>
 
 ## Async函数的使用
 
-    
+    使用async关键字声明函数，内部可以使用await，注意await只能用在async函数内，async函数可以作为表达式使用
+
+
+```javascript
+
+    async function fun1(){
+        await new Promise(resolve=>{
+            console.log('resolve');
+            resolve();
+        });
+    }
+
+    fun1();
+
+    console.log('out'); 
+    // resolve
+    // out
+```
+
+## Async函数的执行过程
+
+    async函数在遇到await后，会返回一个promise，剩余代码会作为这个promise的resolve置值器运行，也就是then的回调函数体，也就意味着剩余代码会被作为微任务放入任务队列中
+
+    async函数返回的promise在代码函数实例化之前就先创建了，所以以下异常会被catch捕获
+
+```javascript
+async function fun1([x]) {
+}
+
+const p1 = fun1();
+
+p1.catch(()=>{
+    console.log('catch');
+});
+
+// catch
+```
+
+
+```javascript
+
+    async function fun1(){
+        await new Promise(resolve=>{
+            console.log('resolve');
+            resolve();
+        });
+
+        console.log('fun1');
+
+
+    }
+
+    fun1();
+
+    console.log('out'); 
+    // resolve
+    // out
+    // fun1
+```
+
+## await关键字后面不同的数据类型会有什么不一样么
+
+    await value相当于Promise.resolve(value)，所以不同数据类型的规则跟Promise.resolve()一样，只是await还会将微任务添加到任务队列，同时挂起函数
+
