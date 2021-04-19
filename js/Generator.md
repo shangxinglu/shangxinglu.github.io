@@ -133,6 +133,48 @@
 
 <br/>
 
+## 异步生成器
 
+    异步生成器与生成器的区别在于，调用next方法后，返回的是一个promise对象，需要在then中才能获取到IteratorResult对象
+
+```javascript
+    async function* fun1(){
+        const result = yield 1;
+
+        console.log(result);
+    }
+
+    const gen = fun1();
+
+    let result = gen.next();
+
+    result.then(console.log); // { value:1,done:false}
+
+    gen.next(200); // 200
+
+```
+
+    还有一点，异步生成器的yield后面会先自动加上await
+
+```javascript
+    function fun1(){
+        return new Promise(resolve=>{
+            setTimeout(resolve,1000);
+        });
+    }
+
+    async function* fun2(){
+        let  result = yield fun1();
+        console.log('1');
+        result = yield fun1();
+        console.log('2');
+
+    }
+
+    const gen = fun2();
+
+    let result = gen.next();
+    gen.next(); // 1s后打印 1
+```
 
 ## Generator的使用场景  

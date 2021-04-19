@@ -16,3 +16,5 @@
 
 ## [Async](/js/Async)
 
+## [Prototype](/js/Prototype)
+
