@@ -12,7 +12,7 @@
 
 ## [Generator](/js/Generator)
 
-## [Generator](/js/Iterator)
+## [Iterator](/js/Iterator)
 
-## [Generator](/js/Async)
+## [Async](/js/Async)
 

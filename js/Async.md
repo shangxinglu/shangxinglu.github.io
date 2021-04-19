@@ -31,6 +31,37 @@
 
     async函数在遇到await后，会返回一个promise，剩余代码会作为这个promise的resolve置值器运行，也就是then的回调函数体，也就意味着剩余代码会被作为微任务放入任务队列中
 
+    以下两段代码等效的
+
+```javascript
+
+   async function fun1(){
+        const result = await 100;
+
+        console.log('fun1',result);
+    }
+
+    fun1();
+```
+
+```javascript
+
+    function fun1(){
+        return new Promise(resolve=>{
+            Promise.resolve(100).then(res=>{
+                const result  = res;
+                console.log('fun1',result);
+                resolve();
+            })
+        });
+    
+    }
+
+    fun1();
+```
+
+
+
     async函数返回的promise在代码函数实例化之前就先创建了，所以以下异常会被catch捕获
 
 ```javascript
@@ -47,26 +78,6 @@ p1.catch(()=>{
 ```
 
 
-```javascript
-
-    async function fun1(){
-        await new Promise(resolve=>{
-            console.log('resolve');
-            resolve();
-        });
-
-        console.log('fun1');
-
-
-    }
-
-    fun1();
-
-    console.log('out'); 
-    // resolve
-    // out
-    // fun1
-```
 
 ## await关键字后面不同的数据类型会有什么不一样么
 
