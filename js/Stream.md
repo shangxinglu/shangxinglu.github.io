@@ -188,7 +188,7 @@ Stream有三种类型
 
 #### ReadableStreamBYOBReader
 
-    ReadableStreamBYOBReader是读取器类型，用来读取开发者提供的流数据
+    ReadableStreamBYOBReader是读取器类型，可以将流直接读入提供的缓冲区，减少后期的复制开销
 
     创建
         一般会用raderStream.getReader()获取实例，比较方便，也可以用构造函数ReadableStreamBYOBReader创建，有一个参数，是ReadableStream的实例
@@ -261,13 +261,6 @@ const readableStream = new ReadableStream({
 readableStream.cancel('reason'); // reason
 
 ```
-
-<br/>
-
-  getIterator()
-
-    别名 [@@asyncIterator]
-    创建一个异步的可读流迭代器，并将流锁定
 
 
 <br/>
@@ -434,7 +427,7 @@ readableStream.cancel('reason'); // reason
 
 <br/>
 
-#### ReadableByteStreamController实例的方法
+#### WritableByteStreamController实例的方法
 
     error()：
         会导致之后与关联流的任何交互都会出错
@@ -532,7 +525,7 @@ readableStream.cancel('reason'); // reason
 
 ## Stream执行过程
 
-Stream会被拆分成块，翻入到一个队列中，队列占用的内存有个上限值，这个上限叫高水位线，当达到高水位线，如果队列不被消费，就会暂停流
+Stream会被拆分成块，翻入到一个队列中，队列中块的数量有个上限值，这个上限叫高水位线，当达到高水位线，如果队列不被消费，就会暂停流
 
 <br/>
 
@@ -540,4 +533,5 @@ Stream会被拆分成块，翻入到一个队列中，队列占用的内存有�
 
 Stream可以用于视频处理、数据压缩、图像编码、JSON解析
 
-## 使用Stream去完成一些数据的
+<br/>
+

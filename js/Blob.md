@@ -75,11 +75,17 @@ Blob.stream()
     返回一个可读取blob内容的stream
 
 ```javascript
-const buffer = new Int8Array(10);
+    const content = '111222';
+    const blob = new Blob([content],{
+        type:'text/plain'
+    });
 
-const blob = new Blob(buffer); 
+    const readableStream = blob.stream()
 
-const readStream = blob.stream();
+    const reader = readableStream.getReader();
+
+    reader.read().then(console.log);// {value: Uint8Array(8), done: false}
+
 ```
 <br/>
 
