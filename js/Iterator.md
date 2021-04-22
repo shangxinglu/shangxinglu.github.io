@@ -106,7 +106,14 @@ for(let item of obj){
         for await (let item of obj) {
             console.log(item);
         }
+
+        // item 赋值过程
+        // let iterator = obj[Symbol.asyncIterator]();
+        // let {value:item} = await Promise.resolve(iterator.next());
+        // console.log(item);
     }
+
+   
 
     fun1();  // 1 2 3 4 5 6 7 8 9 10
 ```
