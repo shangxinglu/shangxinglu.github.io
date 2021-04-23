@@ -135,7 +135,7 @@
 
 ```
 
-  当then的回调函数返回一个promise(p1)，这个then返回的promise(p2)的state和result都会跟p1同步，事实上p1!==p2，但是效果上相当于p1===p2，方便理解
+  当then的回调函数返回一个promise(p1)，这个then返回的promise(p2)的state和result都会跟p1同步，虽然p1!==p2，但是效果上相当于p1===p2，方便理解
 
 ```javascript
     let res = null;
@@ -264,10 +264,48 @@
 
     返回值
         promise
+
 <br/>
 
 ### Promise.race()
 
+    作用
+        根据参数中最先改变状态的promise决定自身promise的状态
+    
+    参数
+        iterator
+            一个promise的iterator类型
+
+    返回值
+        promise
+
+<br/>
+
+### Promise.allSettled()
+
+    作用
+        当参数中的所有状态都改变，会返回promise
+    
+    参数
+        iterator
+            一个promise的iterator类型
+
+    返回值
+        promise
+
+<br/>
+
+### Promise.any()
+
+    作用
+        当参数中的任意一个promise变为fulfilled，就会返回fulfilled的promise，不然返回rejected的promise
+    
+    参数
+        iterator
+            一个promise的iterator类型
+
+    返回值
+        promise
 
 <br/>
 

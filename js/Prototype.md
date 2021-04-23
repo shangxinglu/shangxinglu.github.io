@@ -44,8 +44,8 @@
 
     }
 
-    B.prototype = new A;
-
+    Object.setPrototypeOf(B.prototype,new A);
+    
     B.prototype.getSubName = function (){
         console.log('B')
         return 'B';

@@ -18,3 +18,5 @@
 
 ## [Prototype](/js/Prototype)
 
+## [Class](/js/Class)
+
