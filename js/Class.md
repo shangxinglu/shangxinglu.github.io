@@ -179,6 +179,103 @@
 
 ```
 
+    更加完善的一个class继承模拟
+
+```javascript
+    // class A {
+    //     k1 = 'A';
+
+    //     constructor() {
+    //         console.log('A',arguments);
+    //     }
+
+    //     static getSup(){
+    //         console.log('static','A');
+    //     }
+
+    //     getSupName() {
+    //         console.log('A');
+    //     }
+    // }
+
+    const A = Function;
+    class B extends A {
+        k2 = 'B';
+
+        constructor() {
+            super(...arguments);
+            this.k3 = 'B';
+            console.log('B',arguments);
+        }
+
+        getSubName() {
+            console.log('B');
+        }
+    }
+
+    const b = new B();
+
+    b(); // 1
+```
+
+```javascript
+    // function A() {
+    //     this.k1 = 'A';
+    //     console.log('A', arguments);
+
+    // }
+
+    // A.getSup = function(){
+    //     console.log('static','A');
+    // }
+
+    // A.prototype.getSupName = function () {
+    //     console.log('A');
+    // }
+
+    const A = Function;
+
+    function B(){
+
+        const instance = new (Object.getPrototypeOf(B))(...arguments);
+        
+        // const instance = {};
+        // (Object.getPrototypeOf(B)).apply(instance,[...arguments]);
+        // debugger
+        function construcotr(){
+            this.k2 = 'B';
+            this.k3 = 'B';
+
+            console.log('B',arguments);
+        }
+
+        construcotr.apply(instance,[...arguments]);
+        
+        Object.setPrototypeOf(instance, B.prototype);
+
+        return instance;
+    }
+
+
+    // function B() {
+    //     A.apply(this);
+    //     this.k2 = 'B';
+    //     this.k3 = 'B';
+    //     console.log('B', arguments);
+    // }
+
+
+    Object.setPrototypeOf(B, A),
+        Object.setPrototypeOf(B.prototype, A.prototype);
+
+    B.prototype.getSubName = function () {
+        console.log('B');
+    }
+
+    const b = new B([],'console.log(1);');
+
+    b(); //1
+```
 
 
 <br/>

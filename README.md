@@ -20,3 +20,6 @@
 
 ## [Class](/js/Class)
 
+## [Object](/js/Object)
+
+
