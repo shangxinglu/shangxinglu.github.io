@@ -204,8 +204,134 @@
     console.log(Object.getOwnPropertyDescriptor(obj,'k1')); // {value: "k2", writable: true, enumerable: true, configurable: true}
 
 ```
+    如果属性是原型链上的可写属性，自身没有这个属性，会在自有属性表中创建一个默认的数据描述符，与原型链上属性的描述符无关
+
+```javascript
+
+    const pro = {k1:'p1'};
+
+    Object.defineProperty(pro,'k1',{
+        value:'p2',
+    })
+
+    const obj = Object.create(pro);
+
+    obj.k1 = 'k1';
+
+    console.log(Object.getOwnPropertyDescriptor(obj,'k1')); // {value: "k2", writable: true, enumerable: true, configurable: true}
+
+
+```
+
+    如果一个属性使用的是存取描述符，是不会新建属性描述符的，即使存在原型链上，也会调用存取器而不会在自有属性表新建
+
+```javascript
+    const pro ={};
+
+    Object.defineProperty(pro,'k1',{
+        set(val){
+            console.log('set k1')
+            this._k1 = val;
+        },
+
+        get(){
+            return this._k1;
+        }
+    });
+
+    const obj = Object.create(pro);
+
+    obj.k1 = 'k1'; // set k1
+
+    console.log(Object.getOwnPropertyDescriptor(obj,'k1')); // undefined
+
+
+```
 <br/>
 
 ## Object自有属性表如何操作
 
+### [[extensible]]
+
+    [[extensible]]是在对象内部的一个属性，用来影响自有属性表的相关行为，该属性的默认值是true，表明对象是可以被添加和删除属性的
+
+<br/>
+
+    属性表有两种类型的操作方法
+
+        状态的维护
+            Object.preventExtensions(obj)
+                禁止表 add
+
+            Object.seal(obj)
+                禁止表 add/delete
+
+            Object.freeze(obj)
+                禁止表add/delete/update
+
+        状态检查
+
+            Object.isExtensible(obj)
+                表是否可扩展
+
+            Object.isSealed(obj)
+                表是否密封
+
+            Object.isFrozen
+                表是否冻结
+
+
+### Object.preventExtensions(obj)
+
+    会将表的[[extensible]]属性设置为false，意味着表不能再添加属性
+
+```javascript
+    const obj = {};
+
+    Object.preventExtensions(obj)
+
+    try{
+        obj.k1 = 'k1';
+
+    } catch(e){
+        console.log(obj); // {}
+    }
+```
+
+### Object.seal(obj)
+
+    会将表的[[extensible]]属性设置为false，同时将所有的自有属性的configurable改为false
+
+```javascript
+
+    const obj = {k1:'k1'};
+
+    Object.seal(obj)
+
+    try{
+    delete obj.k1;
+
+    } catch(e){
+        console.log(Object.getOwnPropertyDescriptor(obj,'k1')); // {value: "k1", writable: true, enumerable: true, configurable: false}
+    }
+
+```
+
+### Object.freeze(obj)
+
+    会将表的[[extensible]]属性设置为false，同时将所有的自有属性的writable、configurable改为false
+
+```javascript
+    const obj = {k1:'k1'};
+
+    Object.freeze(obj)
+
+    try{
+    obj.k1 = 'k2';
+
+    } catch(e){
+        console.log(Object.getOwnPropertyDescriptor(obj,'k1')); // {value: "k1", writable: false, enumerable: true, configurable: false}
+    }
+
+```
 
