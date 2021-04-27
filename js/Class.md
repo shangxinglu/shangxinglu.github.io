@@ -86,7 +86,7 @@
 
 ### [[HomeObject]]
 
-    [[HomeObject]]是函数的一个内部插槽，当函数不是箭头函数时，用来保存在语法分析阶段确定的、声明方法时所基于的对象，默认值为undefined，[HomeObject]是不可变的，绑定的对象有两种情况
+    [[HomeObject]]是函数的一个内部插槽，当函数不是箭头函数时，用来保存在语法分析阶段确定的、声明方法时所基于的对象，默认值为undefined，[HomeObject]是不可变的，绑定的对象一般有两种
 
         1. 函数是对象方法
             [[HomeObject]]绑定该对象的prototype

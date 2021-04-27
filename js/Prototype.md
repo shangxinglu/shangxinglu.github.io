@@ -20,7 +20,7 @@
 
     含义上prototype是构造器生成实例的模板，[[prototype]]指向构造函数的prototype，当然可以在使用中改变[[prototype]]的引用对象
 
-    还要就是原型链查找是找的[[prototype]]，而不是prototype
+    还有就是原型链查找是找的[[prototype]]，而不是prototype
 
 
 <br/>
