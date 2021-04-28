@@ -1,0 +1,4 @@
+# ArrayBuffer
+
+## ArrayBuffer的作用是什么
+    ArrayBuffer可以开辟出一块内存区域，用来存储操作二进制数据，普通的数组在内存中是不连续的，但ArrayBuffer是连续的，这就意味着操作ArrayBuffer的速度比Array快很多，在底层与其他程序的数据传输中，许多场景需要二进制数据并非Array默认的双精度浮点格式，Array还需要再进行数据格式的转化才可用，ArrayBuffer可以利用视图创建对应格式的二进制数据，直接传输并可用，时间上就会减少许多
