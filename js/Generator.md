@@ -72,7 +72,7 @@
 <br/>
 
 #### return
-    return用来强制关闭生成器对象，同时还相当于执行了一次next，return方法还有一个参数，作为终止生成器对象的值
+    return用来强制关闭生成器对象，return方法还有一个参数，作为终止生成器对象的值
 
 ```javascript
     function* fun1(){
@@ -87,7 +87,7 @@
 
      const gen = fun1();
 
-     let result = gen.return('end'); // start
+     let result = gen.return('end');
 
      console.log(result); // {value:end,done:true}
 
@@ -156,6 +156,8 @@
 
     还有一点，异步生成器的yield后面会先自动加上await
 
+
+
 ```javascript
     function fun1(){
         return new Promise(resolve=>{
@@ -165,6 +167,10 @@
 
     async function* fun2(){
         let  result = yield fun1();
+
+        // 相当于
+        // let result = yield await fun1().then(res=>{value:res,done:false};
+
         console.log('1');
         result = yield fun1();
         console.log('2');

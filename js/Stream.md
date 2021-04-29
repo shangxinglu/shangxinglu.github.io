@@ -353,8 +353,7 @@ readableStream.cancel('reason'); // reason
 
         write(chunk,controller) 可选
             chunk是要写入的数据块，会被写入基础接收器
-            当流内部队列不满时，会重复调用这个方法，直到补满
-             controller是一个WritableleStreamDefaultController类型对象
+            controller是一个WritableleStreamDefaultController类型对象
 
         close(controller) 可选
             作用
