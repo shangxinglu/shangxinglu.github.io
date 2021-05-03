@@ -64,5 +64,7 @@
                     DataView对象在ArrayBuffer对象的第一个字节的位置，默认是0
                 
                 byteLength
-                    DataView对象控制从第一个字节开始的长度，默认是ArrayBuffer对象的长度
+                    DataView对的字节长度，默认是ArrayBuffer对象的长度
 
+
+    
