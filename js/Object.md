@@ -184,7 +184,7 @@
 ## 对Object的属性进行赋值时不同场景下会有什么不同
 
     当一个属性不存在时
-        会会隐式创建一个数据描述符，writable、enumerable、configurable都是true
+        会隐式创建一个数据描述符，writable、enumerable、configurable都是true
 
 ```javascript
     const obj = {};
