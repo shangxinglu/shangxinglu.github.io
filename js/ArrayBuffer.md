@@ -182,12 +182,15 @@
 
         object
             当传入的参数是一个对象时，就相当于通过TypedArray.from()方法创建一个类型化数组
-        
 
+```javascript
+    const arrayBuf = new Int8Array({length:3});
+    console.log(arrayBuf.length); // 3
+```
 
         buffer
             当传入的的参数为ArrayBuffer对象，很DataView构造函数的参数是一样的
-            
+
 ```javascript
     const buff = new ArrayBuffer(4);
     const arrayBuf = new Int8Array(buff,1);
