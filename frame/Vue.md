@@ -83,4 +83,80 @@
 
 ```
 
-## 
+## 依赖指的是什么
+
+    依赖就是当响应数据发生变化，需要通知用到该数据的地方，比如watch，模板，Vue有个Watcher用来负责依赖的收集
+
+    下面是一个初步的实现
+
+```javascript
+
+    /**
+     * @description 将字路径解析成数组，解析成功返回一个读取指定对象该路径的属性
+     * 
+     * @param {String} path 属性路径
+     * 
+     * @returns {undefined|Function}
+     */
+    const pathReg = /[^\w.]/;
+
+    function parsePath(path) {
+        // 过滤格式错误的路径
+        if (pathReg.test(path)) return;
+
+        const pathArr = path.split('.');
+
+        return function (obj) {
+
+            for (let item of pathArr) {
+                if (!obj) return;
+
+                obj = obj[item];
+            }
+
+            return obj;
+
+        }
+    };
+
+    function setTarget(target){
+        Dep.target = target;
+    }
+
+    class Wathcer {
+
+        /**
+            * @param {Object} 响应数据对象
+            * @param {String|Function} expOrFn 需要收集依赖的属性路径或者获取该属性的方法
+            * @param {Function} cb 回调函数
+            */
+        constructor(vm,expOrFn, cb) {
+            this.vm = vm,
+            this.cb = cb;
+
+            let getter = null;
+
+            if(typeof expOrFn === 'function'){
+                getter = expOrFn;
+            } else {
+                getter = parsePath(expOrFn);
+                if(!getter){
+                    throw new Error('expOrFn');
+                }
+            }
+            this.getter = getter;
+
+            this.get();
+        }
+
+        // 触发依赖的收集
+        get() {
+            setTarget(this.cb);
+
+            this.getter(this.vm);
+
+            setTarget(null);
+
+        }
+    }
+```
