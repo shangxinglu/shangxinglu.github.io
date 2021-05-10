@@ -22,4 +22,6 @@
 
 ## [Object](../js/Object)
 
+# [Closure](../js/Closure.md)
+
 
