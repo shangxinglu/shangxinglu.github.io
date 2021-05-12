@@ -4,6 +4,8 @@
 
 ## [了解一下JavaScript运行一段代码的过程](../js/running-process)
 
+## [JavaScript代码的运行过程](../js/running-process-new)
+
 ## [Promise](../js/Promise)
 
 ## [Blob](../js/Blob)
