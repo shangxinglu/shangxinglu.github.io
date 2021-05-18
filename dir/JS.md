@@ -24,6 +24,8 @@
 
 ## [Object](../js/Object)
 
-# [Closure](../js/Closure.md)
+## [Closure](../js/Closure.md)
+
+## [ArrayBuffer](../js/ArrayBuffer.md)
 
 

@@ -8,7 +8,7 @@
 
 ## Object属性的性质有什么
 
-    Object属性性质有一下几种
+    Object属性性质有以下几种
 
         
         1.Witable
