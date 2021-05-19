@@ -192,9 +192,13 @@
 
 <br/>
 
-## watcher控制依赖
+## watcher收集和执行回调的逻辑
 
-    原本将watcher将依赖进行挂载和触发，在defineReactive中进行收集，但是这样watcher对依赖无法进行控制，所以dep将实例传递给watcher，这样就能间接的通过操控dep控制依赖
+    1.首先watcher将自身实例装载到Dep.target
+    2.dep通过Dep.target将自身实例传到watcher(为了watcher能够操作dep)
+    3.watcher将自身实例传递存放到dep(为了能够通知依赖发生变化)
+    4.当依赖发生变化dep会通过存放的watcher执行回调
+    
 
 
 
