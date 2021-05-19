@@ -192,6 +192,10 @@
 
 <br/>
 
+## watcher控制依赖
+
+    原本将watcher将依赖进行挂载和触发，在defineReactive中进行收集，但是这样watcher对依赖无法进行控制，所以dep将实例传递给watcher，这样就能间接的通过操控dep控制依赖
+
 
 
 
