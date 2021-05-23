@@ -277,7 +277,7 @@
             Object.isSealed(obj)
                 表是否密封
 
-            Object.isFrozen
+            Object.isFrozen(obj)
                 表是否冻结
 
 
