@@ -6,9 +6,12 @@
 
 <br/>
 
-## 节点的类型有哪些
+## Node
+    Node是一个接口，各类的DOM API对象都会继承Node
 
-    DOM中的节点一共有12中类型，可以由12个数值常量表示，全是大写，为方便阅读写成小写
+## Node的类型有哪些
+
+    DOM中的节点一共有12中类型，分别有12个数值常量表示，全是大写，为方便阅读写成小写
     
     node.element_node (1)
     node.attribute_node (2)
@@ -25,19 +28,94 @@
 
 <br/>
 
-## 节点Node的数据属性有哪些
+## Node的数据属性有哪些
 
-    nodeName
-        元素的标签名
-    
+    childNodes  只读
+        包含该节点所有子节点的实时NodeList,
+        NodeList是动态的，会根据子节点自动更新
+
 ```html
-     <span id="n1"><span>
+    <div id="t1">1</div>
 ```
 
 ```javascript
-    const node1 = document.getElementById('n1');
+    const node1 = document.getElementById('t1');
+    const t1El = document.createTextNode('2');
+    node1.append(t1El);
+    console.log(node1.childNodes); //[text, text]
+```
+
+    firstChild  只读
+        该节点第一个子节点，如果没有就会返回null
+        
+
+```html
+    <div id="t1">1</div>
+```
+
+```javascript
+    const node1 = document.getElementById('t1');
+    console.log(node1.firstChild); // 1
+```
+
+    isConnected  只读
+        返回一个布尔值用来检测该节点是否已经连接到一个上下文对象
+        
+```html
+    <div id="t1">1</div>
+```
+
+```javascript
+    const node1 = document.getElementById('t1');
+    console.log(node1.isConnected); // true
+```
+
+    lastChild  只读
+        该节点最后一个子节点，如果没有就会返回null
+        
+```html
+    <div id="t1">1<span>2</span></div>
+```
+
+```javascript
+    const node1 = document.getElementById('t1');
+    console.log(node1.lastChild); // <span>2</span>
+```
+
+    nextSibling  只读
+        该节点同级的下一个节点，如果没有就会返回null
+        
+```html
+    <div id="t1">1</div><span>2</span>
+```
+
+```javascript
+    const node1 = document.getElementById('t1');
+    console.log(node1.nextSibling); // <span>2</span>
+```
+
+    nodeName
+        节点的名字
+    
+```html
+     <span id="t1"><span>
+```
+
+```javascript
+    const node1 = document.getElementById('t1');
     console.log(node1.nodeName); // SPAN
 ```
 
+    nodeType
+        节点的类型
+
+```html
+     <div id="t1"></div>
+```
+
+```javascript
+    const node1 = document.getElementById('t1');
+    console.log(node1.nodeType); // 1
+```
     
     
