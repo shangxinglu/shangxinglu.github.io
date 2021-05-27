@@ -264,3 +264,139 @@
     const positon = node1.compareDocumentPosition(node2);
     console.log(positon); // 10 同时满足8和2
 ```
+
+    contains()
+        作用
+            判断传入节点是否为该节点的后代节点
+        
+        参数
+            otherNode
+        返回
+            布尔值
+
+```html
+   <div id="t1"><div id="t2"></div></div>
+```
+
+```javascript
+    const node1 = document.getElementById('t1');
+    const node2 = document.querySelector('#t2');
+
+    const result = node1.contains(node2);
+
+    console.log(result); // true
+
+```
+
+    getRootNode
+        作用
+            获取上下文的根节点
+        
+        参数
+            [options] 可选参数对象
+
+            [options.composed=false]    如果过为true则跳过shadow Root检索
+
+        返回
+            根节点
+
+```html
+   <div id="t1"></div>
+```
+
+```javascript
+    const node1 = document.getElementById('t1');
+
+    const rootEl = node1.getRootNode();
+    console.log(rootEl); // #document
+
+```
+
+    hasChildNodes()
+        作用
+            判断该节点是否有子节点
+        
+       返回
+            布尔值
+
+```html
+   <div id="t1"></div>
+```
+
+```javascript
+    const node1 = document.getElementById('t1');
+
+    const result = node1.hasChildNodes();
+    console.log(result); // false
+
+```
+
+    insertBefore(newNode,referenceNode)
+        作用
+            在当前节点下添加一个子节点，位于参考节点之前，
+            如果新节点原本就存在节点树，相当于把节点移动了位置
+
+        参数
+            newNode
+                需要插入的节点
+            
+            referenceNode
+                参考节点
+
+
+```html
+   <div id="t1"><span id="t2"> old</span></div>
+```
+
+```javascript
+    const node1 = document.getElementById('t1');
+
+    const node2 = document.querySelector('#t2'),
+    newNode = document.createTextNode('new node');
+
+    node1.insertBefore(newNode,node2); // new node old
+
+```
+
+    isEqualNode(otherNode)
+        作用
+            判断两个节点是否相等
+        
+        参数
+            otherNode
+        
+        返回
+            布尔值
+
+```html
+      <div id="t1">1 2 3</div>
+    <div class="t2">1 2 3</div>
+    <div class="t2">1 2 3</div>
+```
+
+```javascript
+    const node1 = document.getElementById('t1');
+    const [node2,node3] = document.querySelectorAll('.t2');
+
+    console.log(node1.isEqualNode(node2),node2.isEqualNode(node3)); // false true 
+
+```
+
+    normalize()
+        作用
+            将点前节点和他的后代节点规范化，规范化后不会存在一个空的文本节点或者两个相邻的文本节点，空的文本节点不包括空白字符(空格、换行等)构成的文本节点
+
+```html
+    <div id="t1"></div>
+```
+
+```javascript
+    const node1 = document.getElementById('t1');
+    const node2 = document.createTextNode('n2 '),
+    node3 = document.createTextNode('n3 ');
+    node1.append(node2,node3);
+    console.log(node1.childNodes.length); // 2
+    node1.normalize();
+    console.log(node1.childNodes.length);// 1
+
+```
