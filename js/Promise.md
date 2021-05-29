@@ -18,7 +18,7 @@
     reject:
         是一个函数，将Promise对象的状态改为rejected
 
-```javascript
+```JavaScript
     let res = null,
     rej = null;
     const p = new Promise((resolve,reject)=>{
@@ -45,7 +45,7 @@
 
     then方法有两个参数，都是函数，分别在状态未fulfilled和rejected时调用
 
-```javascript
+```JavaScript
     const p = new Promise((resolve,reject)=>{
        resolve()
     }).then(()=>{
@@ -60,7 +60,7 @@
 ```
     then调用后会会返回一个新的promise
 
-```javascript
+```JavaScript
     let res = null;
     const p = new Promise(resolve=>{
         res = resolve;
@@ -83,7 +83,7 @@
 
     Promise(后面简称p1)为fulfilled状态，then返回的Promise对象(后面简称p2)的状态会变为fulfilled，p1传给then回调函数的参数值作为p2的then回调函数的参数值
 
-```javascript
+```JavaScript
     const p1= new Promise(resolve=>{
         resolve('p1');
     });
@@ -100,7 +100,7 @@
 
     Promise(后面简称p1)为rejected状态，then返回的Promise对象(后面简称p2)的状态会变为rejected，p1传给then回调函数的参数值作为p2的then回调函数的参数值
 
-```javascript
+```JavaScript
     const p1= new Promise((resolve,reject)=>{
         reject('p1');
     });
@@ -119,7 +119,7 @@
 
     Promise(后面简称p1)为pending状态，then返回的Promise对象(后面简称p2)的状态会保持pending，当p1发生状态改变，p1的传给then回调函数的参数值传给p2的then回调函数的参数，变为相同状态
 
-```javascript
+```JavaScript
     let res = null;
     const p1= new Promise((resolve,reject)=>{
         res = resolve;
@@ -137,7 +137,7 @@
 
   当then的回调函数返回一个promise(p1)，这个then返回的promise(p2)的state和result都会跟p1同步，虽然p1!==p2，但是效果上相当于p1===p2，方便理解
 
-```javascript
+```JavaScript
     let res = null;
 
     const p1 = new Promise((resolve, reject) => {
@@ -169,7 +169,7 @@
 
     catch(call)相当于then(undefined,call)
 
-```javascript
+```JavaScript
     const p1 = new Promise((resolve,reject)=>{
         reject('reject');
     }).then(undefined,error=>{
@@ -203,7 +203,7 @@
     promsie
         直接返回这个promise对象
 
-```javascript
+```JavaScript
     const p1 = new Promise(()=>{});
     const p2 = Promise.resolve(p1);
 
@@ -213,7 +213,7 @@
     thenable对象(有then方法的对象)
         then方法相当于这个promise的执行器，也就是Promise构造函数的参数，拥有一样的参数，promise的状态会有then方法决定
 
-```javascript
+```JavaScript
     let res = null;
     const obj = {
         then(resolve, reject) {
@@ -315,7 +315,7 @@
 
 ## 实现Promise
 
-```javascript
+```JavaScript
 class MyPromise {
 
     resolveQueue = []; // 解决回调

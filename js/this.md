@@ -10,7 +10,7 @@
 
 ### 1.默认绑定
 
-```javascript
+```JavaScript
 var val = 10;
 function f1(){
     console.log(this.val);
@@ -29,7 +29,7 @@ f1(); // 10
 ### 2.隐式绑定
 
 
-```javascript
+```JavaScript
 var val = 10;
 function f1(){
     console.log(this.val);
@@ -54,7 +54,7 @@ JavaScript提供了3中显示绑定的方式
 
 #### 1.bind()
 
-```javascript
+```JavaScript
 var val = 10;
 
 const obj = {val:200};
@@ -76,7 +76,7 @@ bind函数返回一个将this强制绑定为参数对象的函数
 
 #### 2.apply()
 
-```javascript
+```JavaScript
 var val = 10;
 
 const obj = {val:200};
@@ -96,7 +96,7 @@ apply会直接调用函数并将第一个参数绑定到函数的this
 
 #### 3.call()
 
-```javascript
+```JavaScript
 var val = 10;
 
 const obj = {val:200};
@@ -116,7 +116,7 @@ call会直接调用函数并将第一个参数绑定到函数的this,call与appl
 
 ### 4.new绑定
 
-```javascript
+```JavaScript
 var val = 10;
 
 function f1(){
@@ -145,7 +145,7 @@ console.log(val,obj.val); // 10 200
 
 ### 检验一下new绑定、显示绑定、隐式绑定、默认绑定的优先级
 
-```javascript
+```JavaScript
 var val = 'global';
 const obj = {val:'bind'};
 function f1(){

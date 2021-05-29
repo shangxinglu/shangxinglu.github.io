@@ -15,7 +15,7 @@
 
     Object响应的核心在于Object.defineProperty，下面是个简单示例
 
-```javascript
+```JavaScript
     const obj = {};
     let k1 = '';
     Object.defineProperty(obj, 'k1', {
@@ -39,7 +39,7 @@
     依赖在存储描述符的get中收集，通过set去触发依赖，对象的每个属性都可以有依赖，所以需要将对应属性的依赖收集到对应的对应的地方
 
 
-```javascript
+```JavaScript
     function defineReactive(obj,key,val){
         const dep = [];
 
@@ -89,7 +89,7 @@
 
     下面是一个初步的实现
 
-```javascript
+```JavaScript
 
     /**
      * @description 将字路径解析成数组，解析成功返回一个读取指定对象该路径的属性

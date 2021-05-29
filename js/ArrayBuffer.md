@@ -14,7 +14,7 @@
     使用ArrayBuffer构造函数创建，有一个参数len，控制创建缓冲区的字节长度，0<len<Number.MAX_SAFE_INTEGER(2**53)
 
 
-```javascript
+```JavaScript
     const buff = new ArrayBuffer(10);
 
     console.log(buff.byteLength); // 10
@@ -111,7 +111,7 @@
 
 <br/>
 
-```javascript
+```JavaScript
     const buff = new ArrayBuffer(20),
     view = new DataView(buff);
 
@@ -159,7 +159,7 @@
         length
             当传入参数为整数是，代表数组缓冲区的长度，以调用的构造函数的字节数为单位
         
-```javascript
+```JavaScript
     const arrayBuf = new Int32Array(2);
 
     console.log(arrayBuf.length); // 2
@@ -171,7 +171,7 @@
             当传入的参数是一个typedArray的对象，会被复制到一个新的typedArray对象中，数组的长度不会变
         
 
-```javascript
+```JavaScript
     const arrayBuf = new Int8Array(2),
     arrayBuf1 = new Int16Array(arrayBuf);
 
@@ -183,7 +183,7 @@
         object
             当传入的参数是一个对象时，就相当于通过TypedArray.from()方法创建一个类型化数组
 
-```javascript
+```JavaScript
     const arrayBuf = new Int8Array({length:3});
     console.log(arrayBuf.length); // 3
 ```
@@ -191,7 +191,7 @@
         buffer
             当传入的的参数为ArrayBuffer对象，很DataView构造函数的参数是一样的
 
-```javascript
+```JavaScript
     const buff = new ArrayBuffer(4);
     const arrayBuf = new Int8Array(buff,1);
 

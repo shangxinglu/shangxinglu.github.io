@@ -42,7 +42,7 @@
          1.writable
             属性是否可重写
 
-```javascript
+```JavaScript
     const obj = {};
 
     Object.defineProperty(obj,'k1',{
@@ -64,7 +64,7 @@
         2.enumerable
             属性是否可列举
 
-```javascript
+```JavaScript
     const obj = {k2:'k2'};
 
     Object.defineProperty(obj,'k1',{
@@ -83,7 +83,7 @@
         3.configurable
             属性是否可重新配置
 
-```javascript
+```JavaScript
     const obj = {};
 
     Object.defineProperty(obj,'k1',{
@@ -115,7 +115,7 @@
         1.get
             这是一个取值函数
 
-```javascript
+```JavaScript
     const obj = {};
 
     Object.defineProperty(obj,'k1',{
@@ -131,7 +131,7 @@
         2.set
             这是一个置值函数
 
-```javascript
+```JavaScript
     const obj = {};
 
     Object.defineProperty(obj,'k1',{
@@ -186,7 +186,7 @@
     当一个属性不存在时
         会隐式创建一个数据描述符，writable、enumerable、configurable都是true
 
-```javascript
+```JavaScript
     const obj = {};
 
     obj.k1 = 'k1';
@@ -196,7 +196,7 @@
 
     属性是对象自有的，如果writable为true就会更新描述符的value，不然不会有任何操作，严格模式下会抛出异常
 
-```javascript
+```JavaScript
     const obj = {k1:'k1'};
 
     obj.k1 = 'k2';
@@ -206,7 +206,7 @@
 ```
     如果属性是原型链上的可写属性，自身没有这个属性，会在自有属性表中创建一个默认的数据描述符，与原型链上属性的描述符无关
 
-```javascript
+```JavaScript
 
     const pro = {k1:'p1'};
 
@@ -225,7 +225,7 @@
 
     如果一个属性使用的是存取描述符，是不会新建属性描述符的，即使存在原型链上，也会调用存取器而不会在自有属性表新建
 
-```javascript
+```JavaScript
     const pro ={};
 
     Object.defineProperty(pro,'k1',{
@@ -285,7 +285,7 @@
 
     会将表的[[extensible]]属性设置为false，意味着表不能再添加属性
 
-```javascript
+```JavaScript
     const obj = {};
 
     Object.preventExtensions(obj)
@@ -302,7 +302,7 @@
 
     会将表的[[extensible]]属性设置为false，同时将所有的自有属性的configurable改为false
 
-```javascript
+```JavaScript
 
     const obj = {k1:'k1'};
 
@@ -321,7 +321,7 @@
 
     会将表的[[extensible]]属性设置为false，同时将所有的自有属性的writable、configurable改为false
 
-```javascript
+```JavaScript
     const obj = {k1:'k1'};
 
     Object.freeze(obj)

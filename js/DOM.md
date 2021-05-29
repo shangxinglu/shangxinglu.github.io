@@ -38,7 +38,7 @@
     <div id="t1">1</div>
 ```
 
-```javascript
+```JavaScript
     const node1 = document.getElementById('t1');
     const t1El = document.createTextNode('2');
     node1.append(t1El);
@@ -53,7 +53,7 @@
     <div id="t1">1</div>
 ```
 
-```javascript
+```JavaScript
     const node1 = document.getElementById('t1');
     console.log(node1.firstChild); // 1
 ```
@@ -65,7 +65,7 @@
     <div id="t1">1</div>
 ```
 
-```javascript
+```JavaScript
     const node1 = document.getElementById('t1');
     console.log(node1.isConnected); // true
 ```
@@ -77,7 +77,7 @@
     <div id="t1">1<span>2</span></div>
 ```
 
-```javascript
+```JavaScript
     const node1 = document.getElementById('t1');
     console.log(node1.lastChild); // <span>2</span>
 ```
@@ -89,7 +89,7 @@
     <div id="t1">1</div><span>2</span>
 ```
 
-```javascript
+```JavaScript
     const node1 = document.getElementById('t1');
     console.log(node1.nextSibling); // <span>2</span>
 ```
@@ -101,7 +101,7 @@
      <span id="t1"><span>
 ```
 
-```javascript
+```JavaScript
     const node1 = document.getElementById('t1');
     console.log(node1.nodeName); // SPAN
 ```
@@ -113,7 +113,7 @@
      <div id="t1"></div>
 ```
 
-```javascript
+```JavaScript
     const node1 = document.getElementById('t1');
     console.log(node1.nodeType); // 1
 ```
@@ -125,7 +125,7 @@
      <div id="t1">1</div>
 ```
 
-```javascript
+```JavaScript
     const node1 = document.getElementById('t1');
     console.log(node1.nodeValue); // null
     console.log(node1.firstChild.nodeValue); // 1
@@ -138,7 +138,7 @@
      <div id="t1"></div>
 ```
 
-```javascript
+```JavaScript
     const node1 = document.getElementById('t1');
     console.log(node1.ownerDocument); // #document
 ```
@@ -150,7 +150,7 @@
      <div id="t1"></div>
 ```
 
-```javascript
+```JavaScript
     const node1 = document.getElementById('t1');
    console.log(node1.parentNode); // <body>...</body>
 ```
@@ -162,7 +162,7 @@
      <div id="t1"></div>
 ```
 
-```javascript
+```JavaScript
     const node1 = document.getElementById('t1');
    console.log(node1.parentElement); // <body>...</body>
 ```
@@ -174,7 +174,7 @@
      <span>1</span><div id="t1"></div>
 ```
 
-```javascript
+```JavaScript
     const node1 = document.getElementById('t1');
     console.log(node1.previousSibling); // <span>1</span>
 ```
@@ -186,7 +186,7 @@
      <div id="t1"><span>1<span>2</span></span></div>
 ```
 
-```javascript
+```JavaScript
     const node1 = document.getElementById('t1');
     console.log(node1.textContent); // 12
 ```
@@ -208,7 +208,7 @@
      <div id="t1"></div>
 ```
 
-```javascript
+```JavaScript
     const node1 = document.getElementById('t1');
     const text1El = document.createTextNode('new');
 
@@ -231,7 +231,7 @@
     <div id="t1"><span>1</span></div>
 ```
 
-```javascript
+```JavaScript
     const node1 = document.getElementById('t1');
    const cloneEl = node1.cloneNode(true);
 
@@ -257,7 +257,7 @@
    <div id="t2"><div id="t1"></div></div>
 ```
 
-```javascript
+```JavaScript
     const node1 = document.getElementById('t1');
    const node2 = document.querySelector('#t2');
 
@@ -278,7 +278,7 @@
    <div id="t1"><div id="t2"></div></div>
 ```
 
-```javascript
+```JavaScript
     const node1 = document.getElementById('t1');
     const node2 = document.querySelector('#t2');
 
@@ -304,7 +304,7 @@
    <div id="t1"></div>
 ```
 
-```javascript
+```JavaScript
     const node1 = document.getElementById('t1');
 
     const rootEl = node1.getRootNode();
@@ -323,7 +323,7 @@
    <div id="t1"></div>
 ```
 
-```javascript
+```JavaScript
     const node1 = document.getElementById('t1');
 
     const result = node1.hasChildNodes();
@@ -348,7 +348,7 @@
    <div id="t1"><span id="t2"> old</span></div>
 ```
 
-```javascript
+```JavaScript
     const node1 = document.getElementById('t1');
 
     const node2 = document.querySelector('#t2'),
@@ -374,7 +374,7 @@
     <div class="t2">1 2 3</div>
 ```
 
-```javascript
+```JavaScript
     const node1 = document.getElementById('t1');
     const [node2,node3] = document.querySelectorAll('.t2');
 
@@ -390,7 +390,7 @@
     <div id="t1"></div>
 ```
 
-```javascript
+```JavaScript
     const node1 = document.getElementById('t1');
     const node2 = document.createTextNode('n2 '),
     node3 = document.createTextNode('n3 ');
@@ -399,4 +399,71 @@
     node1.normalize();
     console.log(node1.childNodes.length);// 1
 
+```
+
+    removeChild()
+        作用
+            删除该节点的一个子节点
+
+        参数
+            child 需要移除的节点
+        
+        返回删除的节点
+
+```html
+    <div id="t1"><span id="t2"></span></div>
+```
+
+```JavaScript
+    const node2 = document.querySelector('#t2');
+
+    console.log(node1.removeChild(node2)); // <span id="t2"></span>
+    console.log(node1); // <div id="t1"></div>
+```
+
+    replaceChild(newChild,oldChild)
+        作用
+            替换当前节点的一个子节点
+        
+        参数
+            newChild 用来替换的节点    
+
+            oldChild 被替换的节点
+        
+        返回
+            被替换的节点
+
+```html
+    <div id="t1"><span id="t2">old child</span></div>
+```
+
+```JavaScript
+    const node2 = document.getElementById('t2');
+    const newChild = document.createTextNode('new child');
+
+    node1.replaceChild(newChild,node2);
+
+    console.log(node1); // <div id="t1">new child</div>
+```
+
+    isDefaultNamespace(url)
+        作用
+            判断url是否是当前节点的默认命名空间
+        
+        参数
+            url 命名空间
+        
+        返回
+            布尔值
+
+```html
+    <div id="t1"></div>
+```
+
+```JavaScript
+    console.log(node1.isDefaultNamespace('http://www.w3.org/1999/xhtml')); // true
+
+    const divEl = document.createElementNS('test','div');
+
+    console.log(divEl.isDefaultNamespace('test')); // true
 ```

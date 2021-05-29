@@ -29,7 +29,7 @@
 
 ## Prototype的继承
 
-```javascript
+```JavaScript
 
     function A(){
 
@@ -65,7 +65,7 @@
     当target是函数时，instanceof是用来检测构造函数的prototype属性是否出现在原型链上
     当在target是对象时，会先访问对象的@@hasInstance属性，该属性必须要指向一个函数，该函数的返回值作为判断结果，不存在该属性或不为函数都会抛出错误
 
-```javascript
+```JavaScript
     const obj = {
         sex: 1,
         [Symbol.hasInstance](target){

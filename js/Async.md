@@ -11,7 +11,7 @@
     使用async关键字声明函数，内部可以使用await，注意await只能用在async函数内，async函数可以作为表达式使用
 
 
-```javascript
+```JavaScript
 
     async function fun1(){
         await new Promise(resolve=>{
@@ -33,7 +33,7 @@
 
     以下两段代码等效的
 
-```javascript
+```JavaScript
 
    async function fun1(){
         const result = await 100;
@@ -44,7 +44,7 @@
     fun1();
 ```
 
-```javascript
+```JavaScript
 
     function fun1(){
         return new Promise(resolve=>{
@@ -64,7 +64,7 @@
 
     async函数返回的promise在代码函数实例化之前就先创建了，所以以下异常会被catch捕获
 
-```javascript
+```JavaScript
 async function fun1([x]) {
 }
 

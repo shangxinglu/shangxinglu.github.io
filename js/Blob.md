@@ -30,7 +30,7 @@ new Blob(array,options)
         transparent:代表会保持blob中的结束符不变
         native:代表结束符会被更改为合适宿主操作系统文件系统的换行符
 
-```javascript
+```JavaScript
 const buffer = new Int8Array(2);
 const blob = new Blob(buffer);
 ```
@@ -42,7 +42,7 @@ const blob = new Blob(buffer);
 
     表示Blob对象包含数据的字节大小，只读
 
-```javascript
+```JavaScript
 blob.size; // 2
 ```
 
@@ -50,7 +50,7 @@ blob.size; // 2
 
     表示Blob对象包含内容的MIME类型，类型未知则为空字符串，只读
 
-```javascript
+```JavaScript
 blob.type; // ''
 ```
 
@@ -60,7 +60,7 @@ Blob.slice(start,end[,contentType])
 
     返回一个新的Blob对象，包含指定范围的数据
 
-```javascript
+```JavaScript
 
 const buffer = new Int8Array(10);
 
@@ -74,7 +74,7 @@ Blob.stream()
 
     返回一个可读取blob内容的stream
 
-```javascript
+```JavaScript
     const content = '111222';
     const blob = new Blob([content],{
         type:'text/plain'
@@ -93,7 +93,7 @@ Blob.text()
 
     返回一个promise且包含blob所有内容的UTF-8格式的USVString
 
-```javascript
+```JavaScript
 const blob = new Blob(['<h1>TEXT</h1>']);
 
 blob.text().then(res=>{
@@ -106,7 +106,7 @@ Blob.arrayBuffer()
 
     返回一个promise且包含blob所有内容的二进制格式数据的ArrayBuffer
 
-```javascript
+```JavaScript
 const blob = new Blob(['<h1>TEXT</h1>']);
 
 blob.arrayBuffer().then(res => {

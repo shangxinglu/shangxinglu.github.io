@@ -59,7 +59,7 @@ Stream有三种类型
             size(chunk)
                 包含参数chunk的方法，表示每个块使用的大小，单位字节
 
-```javascript
+```JavaScript
 
     const content = '我是一个文件!!!!!!!!!!!';
 
@@ -170,7 +170,7 @@ Stream有三种类型
         releaseLock()
             释放对这个readableStream的锁定
 
-```javascript
+```JavaScript
 
     const content = '我是一个文件!!!!!!!!!!!';
 
@@ -219,7 +219,7 @@ Stream有三种类型
     只读
     用来判断当前可读流是否被读取器锁定
 
-```javascript
+```JavaScript
 
 const content = '我是一个文件!!!!!!!!!!!';
 
@@ -243,7 +243,7 @@ console.log(read.locked); // true
 
     用来取消读取流，返回一个Promise对象，注意需要在可读流在未锁定状态调用
 
-```javascript
+```JavaScript
 const content = '我是一个文件!!!!!!!!!!!';
 
 const readableStream = new ReadableStream({
@@ -277,7 +277,7 @@ readableStream.cancel('reason'); // reason
 
     
 
-```javascript
+```JavaScript
 
     const content = '我是一个文件!!!!!!!!!!!';
 
@@ -299,7 +299,7 @@ readableStream.cancel('reason'); // reason
 
     用来将当前管道流输入到转换流或可读可写流
 
-```javascript
+```JavaScript
 
 
 ```
@@ -308,7 +308,7 @@ readableStream.cancel('reason'); // reason
 
     将当前可读流输出到给定的可写流，并且返回一个Promise对象
 
-```javascript
+```JavaScript
     const content = '1234567890';
 
     const readableStream = new ReadableStream({
@@ -389,7 +389,7 @@ readableStream.cancel('reason'); // reason
                 包含参数chunk的方法，表示每个块使用的大小，单位字节    
 
 
-```javascript
+```JavaScript
     const writableStream = new WritableStream({
         start(controller){
             console.log('start');
@@ -486,7 +486,7 @@ readableStream.cancel('reason'); // reason
             将数据块写入可写流及其底层接收器，会返回一个promise用来判断写入的成功还是失败
 
  
-```javascript
+```JavaScript
 
     const writableStream = new WritableStream({
         start(controller){

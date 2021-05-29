@@ -47,7 +47,7 @@
 
     next有一个参数，作为上次暂停时yield的值，继续执行
 
-```javascript
+```JavaScript
     function* fun1(){
         console.log('start');
 
@@ -74,7 +74,7 @@
 #### return
     return用来强制关闭生成器对象，return方法还有一个参数，作为终止生成器对象的值
 
-```javascript
+```JavaScript
     function* fun1(){
         console.log('start');
 
@@ -101,7 +101,7 @@
 
     这里需要注意一下，如果在未执行next的情况下，直接使用throw，相当于在外部抛出错误，因为此时Generator内部代码还未启动
 
-```javascript
+```JavaScript
     function* fun1(){
         
         try{
@@ -137,7 +137,7 @@
 
     异步生成器与生成器的区别在于，调用next方法后，返回的是一个promise对象，需要在then中才能获取到IteratorResult对象
 
-```javascript
+```JavaScript
     async function* fun1(){
         const result = yield 1;
 
@@ -158,7 +158,7 @@
 
 
 
-```javascript
+```JavaScript
     function fun1(){
         return new Promise(resolve=>{
             setTimeout(resolve,1000);

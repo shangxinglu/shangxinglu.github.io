@@ -20,7 +20,7 @@
     迭代器是一种一次性使用的对象，迭代器对象必须要有next方法，该方法的返回值必须是IteratorResult对象(就是含有done和value属性的对象)
 
 
-```javascript
+```JavaScript
 
 // 迭代器创建
 const createIterator = function(){
@@ -66,7 +66,7 @@ for(let item of obj){
 
 所以iterator的代码也可以直接用在asyncIterator中
 
-```javascript
+```JavaScript
 
     // 创建异步迭代器
     function createAsyncIterator() {

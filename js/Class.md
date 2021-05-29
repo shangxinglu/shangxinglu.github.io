@@ -11,7 +11,7 @@
 
     class的实例化中，运算符()是作用是传值参数表，并没有调用函数的意义，所以不需要给构造函数传递参数表时可以不加
 
-```javascript
+```JavaScript
     class A{
         k1 = 'k1';
 
@@ -30,7 +30,7 @@
 
 ```
 
-```javascript
+```JavaScript
     const A = class {
         k1 = 'k1';
 
@@ -56,7 +56,7 @@
 
     继承使用extends关键字，在extends后面是要继承的父类parentClass，这个父类的prototype必须是Object或者null，可以使用表达式的返回值作为父类，如果在子类中定义construct，必须先调用super
     
-```javascript
+```JavaScript
     
     class A{
         getSupName(){
@@ -100,7 +100,7 @@
 
     super的查找就是利用[[HomeObject]]，会先通过[[HomeObject]]找到绑定该方法的对象(obj)，然后再查找到obj的[[prototype]]，这样就找到了父类，由于[[HomeObject]]是固定不变的，所以super也是不变的
 
-```javascript
+```JavaScript
     const obj1 = {
         fun1(){
             console.log(super.attr);
@@ -126,7 +126,7 @@
 
     以下下两段代码是等效的
 
-```javascript
+```JavaScript
     class A {
         k1 = 'k1';
 
@@ -152,7 +152,7 @@
 ```
 
 
-```javascript
+```JavaScript
     function A(){
         this.k1 = 'k1';
     }
@@ -181,7 +181,7 @@
 
     更加完善的一个class继承模拟
 
-```javascript
+```JavaScript
     // class A {
     //     k1 = 'A';
 
@@ -218,7 +218,7 @@
     b(); // 1
 ```
 
-```javascript
+```JavaScript
     // function A() {
     //     this.k1 = 'A';
     //     console.log('A', arguments);
