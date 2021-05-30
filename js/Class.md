@@ -213,7 +213,7 @@
         }
     }
 
-    const b = new B();
+    const b = new B([],'console.log(1);')
 
     b(); // 1
 ```

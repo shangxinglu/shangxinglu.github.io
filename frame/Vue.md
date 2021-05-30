@@ -228,98 +228,57 @@
 
 ## patch逻辑
 
-```flow
-st=>start: patch
-if1=>condition: oldvnode是否存在
-op1_no=>end: 使用vnode创建节点并插入视图
-if2=>condition: oldvnode与vnode
-                是否是同一节点
-op2_no=>operation: 为vnode创建node，添加到视图
-op2_no_1=>end: 将oldvnode对应的node移除
-op2_yes=>operation: 更新节点
+    oldvnode是否存在
+        不存在 
+            使用vnode创建节点并插入视图
+        
+    oldvnode与vnode是否是同一节点
+        不是
+            为vnode创建node，添加到视图
+            将oldvnode对应的node移除
 
+    更新节点
+        oldvnode与vnode是否完全相等
+            是
+                退出程序
 
-if3=>condition: oldvnode与vnode
-                是否完全相等
-op3_yes=>end: 退出程序
+        oldvnode与vnode是否是静态节点
+            是
+                退出程序
 
-if4=>condition: oldvnode与vnode
-                是否是静态节点
-op4_yes=>end: 退出程序
+        vnode是否是有text属性
+            是
+                vnode的文本和oldvnode的文本不同
+                    是
+                        将vnode的text替换oldvnode的text
+            
 
-if5=>condition: vnode
-                是否是有text属性
+        vnode的子节点和oldvnode的子节点都存在
+            是
+                vnode的子节点和oldvnode的子节点不相同
+                    是
+                        更新子节点
 
-if5=>condition: vnode有text属性
-
-if6=>condition: vnode的文本
-                和oldvnode的
-                文本不同
-op6_yes=>end: 将vnode的text替换
-                oldvnode的text 
-
-
-if7=>condition: vnode的子节点
-                和oldvnode的
-                子节点都存在
-
-if8=>condition: vnode的子节点
-                和oldvnode的
-                子节点不相同
-
-op8_yes=>end: 更新子节点 
-
-if9=>condition: 只有vnode的
-                子节点存在
-
-if10=>condition: oldvnode有文本
-
-op10_yes=>operation: 清空oldVnode
-                    对应node中的文本
-
-op10_no=>end: 把vnode的子节点
-                添加到oldvnode
-                对应node的中
-
-if11=>condition: 只有oldvnode
-                    的子节点存在
-
-op11_yes=>end: 把oldvnode
-                对应node的子节点
-                清空
-
-if12=>condition: oldvnode有文本
+        只有vnode的子节点存在
+            是
+                oldvnode有文本
+                    没有
+                        把vnode的子节点添加到oldvnode对应node的中
                     
-
-op12_yes=>end: 把oldvnode
-                对应node的文本
-                清空
-
+                    有
+                        清空oldVnode对应node中的文本
+                        把vnode的子节点添加到oldvnode对应node的中
 
 
 
+        只有oldvnode的子节点存在
+            是
+                把oldvnode对应node的子节点清空
+
+
+         oldvnode有文本
+            是
+                把oldvnode对应node的文本清空
 
 
 
-
-st->if1
-if1(no)->op1_no
-if1(yes)->if2(no)->op2_no(r)->op2_no_1
-if2(yes)->op2_yes->if3
-
-if3(yes,right)->op3_yes
-if3(no)->if4(yes,right)->op4_yes
-
-if4(no)->if5(yes,right)->if6(yes,r)->op6_yes
-
-if5(no)->if7(yes,right)->if8(yes, right)->op8_yes
-
-
-if7(no)->if9(yes,right)->if10(no,right)->op10_no
-
-if10(yes)->op10_yes(right)->op10_no
-
-if9(no)->if11(yes,right)->op11_yes
-
-if11(no)->if12(yes,right)->op12_yes
-```
