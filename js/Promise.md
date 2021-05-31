@@ -8,7 +8,8 @@
 
 ## Promise的使用
     
-    Promise有3中状态: penging(待定)、fulfilled(已兑现)、rejected(已拒绝)，一旦当状态变为fulfilled或rejected，就不会在发生变化
+    Promise有3中状态: penging(待定)、fulfilled(已兑现)、rejected(已拒绝)，
+    一旦当状态变为fulfilled或rejected，就不会在发生变化
 
     Promise构造函数有一个参数，是一个函数，这个函数有两个参数resolve和reject
 
@@ -43,7 +44,7 @@
 
     当Promise对象状态变为fulfilled或rejected时，会调用后面的then方法
 
-    then方法有两个参数，都是函数，分别在状态未fulfilled和rejected时调用
+    then方法有两个参数，都是函数，分别在状态为fulfilled和rejected时调用
 
 ```JavaScript
     const p = new Promise((resolve,reject)=>{
@@ -75,13 +76,14 @@
     res();
 
     console.log(p); // Promise{fulfilled}
-    console.log(p1); // Promise{pending}
+    console.log(p1); // Promise{fulfilled}
 
 ```
 
   当then中的函数接受的参数为一个Promise对象，会有几种情况
 
-    Promise(后面简称p1)为fulfilled状态，then返回的Promise对象(后面简称p2)的状态会变为fulfilled，p1传给then回调函数的参数值作为p2的then回调函数的参数值
+    Promise(后面简称p1)为fulfilled状态，then返回的Promise对象(后面简称p2)的状态会
+    变为fulfilled，p1传给then回调函数的参数值作为p2的then回调函数的参数值
 
 ```JavaScript
     const p1= new Promise(resolve=>{
@@ -98,7 +100,8 @@
 
 ```
 
-    Promise(后面简称p1)为rejected状态，then返回的Promise对象(后面简称p2)的状态会变为rejected，p1传给then回调函数的参数值作为p2的then回调函数的参数值
+    Promise(后面简称p1)为rejected状态，then返回的Promise对象(后面简称p2)的状态会
+    变为rejected，p1传给then回调函数的参数值作为p2的then回调函数的参数值
 
 ```JavaScript
     const p1= new Promise((resolve,reject)=>{
@@ -117,7 +120,9 @@
 
 ```
 
-    Promise(后面简称p1)为pending状态，then返回的Promise对象(后面简称p2)的状态会保持pending，当p1发生状态改变，p1的传给then回调函数的参数值传给p2的then回调函数的参数，变为相同状态
+    Promise(后面简称p1)为pending状态，then返回的Promise对象(后面简称p2)的状态会保
+    持pending，当p1发生状态改变，p1的传给then回调函数的参数值传给p2的then回调函数
+    的参数，变为相同状态
 
 ```JavaScript
     let res = null;
@@ -129,13 +134,14 @@
         resolve(p1);
     });
 
-    p2.then(console.log); // 200
+    p2.then(console.log);
 
-    res(200);
+    res(200);  // 200
 
 ```
 
-  当then的回调函数返回一个promise(p1)，这个then返回的promise(p2)的state和result都会跟p1同步，虽然p1!==p2，但是效果上相当于p1===p2，方便理解
+    当then的回调函数返回一个promise(p1)，这个then返回的promise(p2)的state和result
+    都会跟p1同步，虽然p1!==p2，但是效果上相当于p1===p2，方便理解
 
 ```JavaScript
     let res = null;
@@ -198,7 +204,7 @@
     返回值
         promise
     
-  value在一下几种不同类型时，有所区别
+  value在以下几种不同类型时，有所区别
 
     promsie
         直接返回这个promise对象
@@ -211,7 +217,8 @@
 
 ```
     thenable对象(有then方法的对象)
-        then方法相当于这个promise的执行器，也就是Promise构造函数的参数，拥有一样的参数，promise的状态会有then方法决定
+        then方法相当于这个promise的执行器，也就是Promise构造函数的参数，拥有一样的
+        参数，promise的状态会有then方法决定
 
 ```JavaScript
     let res = null;
@@ -247,10 +254,11 @@
     
     参数
         reson
-            决绝原型
+            拒绝原因
 
     返回值
         promise
+
 <br/>   
 
 ### Promise.all()
@@ -307,131 +315,6 @@
     返回值
         promise
 
-<br/>
-
-## Promise运行过程
 
 <br/>
 
-## 实现Promise
-
-```JavaScript
-class MyPromise {
-
-    resolveQueue = []; // 解决回调
-    rejectQueue = []; // 拒绝回调
-
-    status = 'pending'; // 状态 pending:等待    resolve:已解决    reject:已拒绝
-
-    constructor(fun) {
-        if (typeof fun === 'function') {
-
-            const resolve = this.resolve.bind(this),
-                reject = this.reject.bind(this);
-            fun(resolve, reject);
-        } else {
-            throw new Error('argument must is function');
-        }
-
-    }
-
-    /**
-     * 返回一个resolve状态的MyPromise
-     */
-    static resolve(result) {
-        console.log('static resolve');
-        if (result instanceof MyPromise) {
-            return result;
-        } else {
-
-            const myPromise = new MyPromise((resolve) => {
-                resolve();
-            });
-
-            myPromise._resolve = this.resolveQueue;
-
-            return myPromise;
-        }
-    }
-
-    /**
-     * @description 设置已解决回调队列
-     * 
-     * @param then {Array} 回调队列
-     * 
-     */
-    set _resolve(then) {
-        console.log('_resolve',then);
-        this.rejectQueue = then;
-    }
-
-    /**
-     * @description 设置拒绝回调队列
-     * 
-     * @param then {Array} 回调队列
-     * 
-     */
-    set _reject(then) {
-        this.rejectQueue = then;
-    }
-
-    /**
-     * 解决
-     */
-    resolve() {
-        // console.log('resolve',this);
-
-        setTimeout(() => {
-            // console.log(this)
-            this.resolveQueue.length && MyPromise.resolve((this.resolveQueue.shift())());
-        }, 0);
-    }
-
-    /**
-     * 拒绝
-     */
-    reject() {
-        // console.log('reject');
-        setTimeout(() => {
-            // console.log(this)
-            this.rejectQueue && (this.rejectQueue.shift())();
-        }, 0);
-    }
-
-    /**
-     * 回调收集
-     */
-    then(resolveCall, rejectCall) {
-        console.log('回调收集');
-        if (resolveCall) {
-            this.resolveQueue.push(resolveCall);
-            // console.log(this.resolveCall)
-        }
-
-        if (rejectCall) {
-            this.rejectQueue.push(rejectCall);
-        }
-        console.log(this.resolveQueue)
-
-        return this;
-    }
-
-}
-
-
-
-const p1 = new MyPromise((resolve, reject) => {
-    resolve();
-    // reject();
-}).then(() => {
-    console.log('then');
-}, () => {
-    console.log('rejectCall');
-}).then(() => {
-    console.log('then1');
-
-});
-
-
-
-```

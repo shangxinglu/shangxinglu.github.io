@@ -62,7 +62,9 @@ for(let item of obj){
     
     1. 异步迭代使用的不是@@Symbol.iterator而是@@Symbol.asyncIterator
 
-    2. 异步迭代器调用next方法后返回可以是一个promise，但这个promise要返回IteratorResult对象，也可以直接返回IteratorResult对象，相当于在执行体内部先给item包了一层async，利用await达到了等待和包装的效果，会返回一个promise
+    2. 异步迭代器调用next方法后返回可以是一个promise，但这个promise要返回
+    IteratorResult对象，也可以直接返回IteratorResult对象，相当于在执行体内部先给
+    item包了一层async，利用await达到了等待和包装的效果，会返回一个promise
 
 所以iterator的代码也可以直接用在asyncIterator中
 
