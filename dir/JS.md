@@ -28,4 +28,6 @@
 
 ## [DOM](../js/DOM.md)
 
+## [RegExp](../js/RegExp.md)
+
 
