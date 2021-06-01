@@ -172,6 +172,33 @@
         匹配一个NUl字符
 
 
+## 组和范围
+
+    x|y
+        匹配x或y中的任意字符
 
 
+```JavaScript
 
+    const regexp = /name|age/;
+
+    const text1 = 'my name is sxl',
+    text2 = 'my age is 99';
+    console.log(regexp.test(text1)); // true
+    console.log(regexp.test(text2)); // true
+
+```
+
+    [xyz]
+    [x-z]
+
+
+    [^abc]
+    [^a-c]
+
+    
+    (x)
+        捕获组,匹配x并记住匹配项
+
+    
+ 

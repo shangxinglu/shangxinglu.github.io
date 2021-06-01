@@ -2,7 +2,8 @@
 
 ## Object的理解
 
-    Object(对象)从语义上看，可以理解为一组组属性的集合，每个对象在内部会维护一张自有属性的属性表
+    Object(对象)从语义上看，可以理解为一组组属性的集合，每个对象在内部
+    会维护一张自有属性的属性表
 
 <br/>
 
@@ -25,7 +26,8 @@
 
 ## Object属性的性质如何更改
 
-    属性的性质是由属性描述符来定义的，所以可以通过属性描述符来进行对属性性质的更改，属性描述符也是一个对象
+    属性的性质是由属性描述符来定义的，所以可以通过属性描述符来进行对属
+    性性质的更改，属性描述符也是一个对象
     
     属性描述符有两种类型
 
@@ -184,7 +186,8 @@
 ## 对Object的属性进行赋值时不同场景下会有什么不同
 
     当一个属性不存在时
-        会隐式创建一个数据描述符，writable、enumerable、configurable都是true
+        会隐式创建一个数据描述符，writable、enumerable、configurable
+        都是true
 
 ```JavaScript
     const obj = {};
@@ -194,7 +197,8 @@
     console.log(Object.getOwnPropertyDescriptor(obj,'k1')); // {value: "k1", writable: true, enumerable: true, configurable: true}
 ```
 
-    属性是对象自有的，如果writable为true就会更新描述符的value，不然不会有任何操作，严格模式下会抛出异常
+    属性是对象自有的，如果writable为true就会更新描述符的value，不然不
+    会有任何操作，严格模式下会抛出异常
 
 ```JavaScript
     const obj = {k1:'k1'};
@@ -204,7 +208,8 @@
     console.log(Object.getOwnPropertyDescriptor(obj,'k1')); // {value: "k2", writable: true, enumerable: true, configurable: true}
 
 ```
-    如果属性是原型链上的可写属性，自身没有这个属性，会在自有属性表中创建一个默认的数据描述符，与原型链上属性的描述符无关
+    如果属性是原型链上的可写属性，自身没有这个属性，会在自有属性表中创
+    建一个默认的数据描述符，与原型链上属性的描述符无关
 
 ```JavaScript
 
@@ -223,7 +228,8 @@
 
 ```
 
-    如果一个属性使用的是存取描述符，是不会新建属性描述符的，即使存在原型链上，也会调用存取器而不会在自有属性表新建
+    如果一个属性使用的是存取描述符，是不会新建属性描述符的，即使存在原
+    型链上，也会调用存取器而不会在自有属性表新建
 
 ```JavaScript
     const pro ={};
@@ -253,7 +259,8 @@
 
 ### [[extensible]]
 
-    [[extensible]]是在对象内部的一个属性，用来影响自有属性表的相关行为，该属性的默认值是true，表明对象是可以被添加和删除属性的
+    [[extensible]]是在对象内部的一个属性，用来影响自有属性表的相关行
+    为，该属性的默认值是true，表明对象是可以被添加和删除属性的
 
 <br/>
 
@@ -300,7 +307,8 @@
 
 ### Object.seal(obj)
 
-    会将表的[[extensible]]属性设置为false，同时将所有的自有属性的configurable改为false
+    会将表的[[extensible]]属性设置为false，同时将所有的自有属性的
+    configurable改为false
 
 ```JavaScript
 
@@ -319,7 +327,8 @@
 
 ### Object.freeze(obj)
 
-    会将表的[[extensible]]属性设置为false，同时将所有的自有属性的writable、configurable改为false
+    会将表的[[extensible]]属性设置为false，同时将所有的自有属性的
+    writable、configurable改为false
 
 ```JavaScript
     const obj = {k1:'k1'};
