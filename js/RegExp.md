@@ -200,5 +200,60 @@
     (x)
         捕获组,匹配x并记住匹配项
 
+    \n
+        n是一个正整数，是对括号匹配的第n个匹配项的反引用
+
+```JavaScript
+    const regexp = /name(\d)(\d)\2/,
+
+    text1 = 'name233',
+    text2 = 'name232';
+
+    log(regexp.test(text1)); // true
+    log(regexp.test(text2)); // false
+```
     
+    (?<Name>x)
+        具名捕获组，匹配x并将其存储在返回匹配项的groups对象中，
+        Name就是键名
+    
+
+    (?:x)
+        非组捕获，匹配x，但不记得匹配
  
+
+
+
+## 量词
+
+    x*
+        匹配x项0次或多次
+
+    x+
+        匹配x项1次或多次
+    
+    x?
+        匹配x项0次或1次
+    
+    x{n}
+        匹配x项n次
+    
+    x{n,}
+        匹配x项n次或n次以上
+    
+    x{n,m}
+        匹配x项最少n次最多m次
+    
+    默认情况下*和+这样的量词是贪婪的，会试图匹配更多字符串,
+    ?后面的字符会使量词变的非贪婪
+
+
+```JavaScript
+    const regex1 = /\d+?/,
+    regex2 = /\d+/;
+
+    const text1 = '1111111';
+
+    log(regex1.exec(text1)[0]); // 1
+log(regex2.exec(text1)[0]); // 1111111
+```
