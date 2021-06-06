@@ -2,7 +2,9 @@
 
 ## DOM是什么
 
-    DOM的全称是Document Object Model，文档对象模型，是HTML和XML文档的编程接口，为开发者提供了添加、删除、修改页面的功能，HTML和XML可以用DOM表示为一个由节点构成的层级结构
+    DOM的全称是Document Object Model，文档对象模型，是HTML和XML文档的
+    编程接口，为开发者提供了添加、删除、修改页面的功能，HTML和XML可以
+    用DOM表示为一个由节点构成的层级结构
 
 <br/>
 
@@ -194,7 +196,7 @@
 
 ## Node的方法有哪些
 
-    appendChild()
+    appendChild(child)
         作用
             将子节点添加到指定父节点的列表末尾，如果子节点之前已经存在于当前文档数，就相当于把他移动了位置
 
@@ -217,7 +219,7 @@
     console.log(node1); // <div id="t1">new</div>
 ```
 
-    cloneNode()
+    cloneNode(deep)
         作用
             克隆一个节点
 
@@ -238,7 +240,7 @@
     console.log(cloneEl); // <div id="t1"><span>1</span></div>
 ```
 
-    compareDocumentPosition
+    compareDocumentPosition(otherNode)
         作用
             用来比较当前节点和文档中任一节点的位置关系
 
@@ -265,7 +267,7 @@
     console.log(positon); // 10 同时满足8和2
 ```
 
-    contains()
+    contains(otherNode)
         作用
             判断传入节点是否为该节点的后代节点
         

@@ -26,6 +26,8 @@
 
 ## [ArrayBuffer](../js/ArrayBuffer.md)
 
+## [JSON](../js/JSON.md)
+
 ## [DOM](../js/DOM.md)
 
 ## [RegExp](../js/RegExp.md)
