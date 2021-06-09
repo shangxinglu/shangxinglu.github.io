@@ -403,7 +403,7 @@
 
 ```
 
-    removeChild()
+    removeChild(child)
         作用
             删除该节点的一个子节点
 
