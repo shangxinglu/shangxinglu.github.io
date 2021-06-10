@@ -257,3 +257,22 @@
     log(regex1.exec(text1)[0]); // 1
 log(regex2.exec(text1)[0]); // 1111111
 ```
+
+## $&,$`,$'
+
+    $&,$`,$'这几个特殊正则可以在string的replace中使用
+
+    $& 表示匹配到的内容
+
+    $` 表示匹配内容的左侧内容
+
+    $' 表示匹配内容的右侧内容
+
+```JavaScript
+    const text = 'abc123def';
+
+    log(text.replace(/\d+/,'[$&]')); // abc[123]def
+    log(text.replace(/\d+/,'[$`]')); // abc[abc]def
+    log(text.replace(/\d+/,"[$']")); //abc[def]def
+
+```
