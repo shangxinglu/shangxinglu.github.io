@@ -32,4 +32,6 @@
 
 ## [RegExp](../js/RegExp.md)
 
+## [JavaScript与字符集](../js/JavaScript与字符集.md)
+
 
