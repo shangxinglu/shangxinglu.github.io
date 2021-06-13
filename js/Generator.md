@@ -2,9 +2,75 @@
 
 ## Generator是什么
 
-    Generator也叫生成器，是异步编程的一种解决方案，JavaScript通过Generator将执行栈的控制交给了用户，因为Generator可以暂停和恢复函数的执行，这也是它的最强大之处
+    Generator也叫生成器，是异步编程的一种解决方案，JavaScript通过Generator将执行栈的控制
+    交给了用户，因为Generator可以暂停和恢复函数的执行，这也是它的最强大之处
 
 <br/>
+    
+    可以对比一下使用generator和不使用的区别
+
+```JavaScript
+    const id = 100;
+    getUserData(id);
+
+    function getUserData(id){
+        log('getUserData')
+        setTimeout(()=>{
+            const userData = {lid:20};
+            getLogData(userData.lid);
+        },1000)
+    }
+
+    function getLogData(id){
+        log('getLogData')
+
+        setTimeout(()=>{
+            const logData = {name:'logData'};
+            log(logData);
+        },1000)
+    }
+```
+
+
+```JavaScript
+
+    function* gen(){
+        const id = 100;
+        const userData = yield getUserData(id);
+        const logData = yield getLogData(userData.lid);
+        log(logData)
+    }
+
+    const query = gen();
+
+    query.next();
+
+    function getUserData(id){
+        log('getUserData')
+        setTimeout(()=>{
+            const userData = {lid:20};
+            query.next(userData)
+        },1000)
+    }
+
+    function getLogData(id){
+        log('getLogData')
+
+        setTimeout(()=>{
+            const logData = {name:'logData'};
+            query.next(logData)
+        },1000)
+    }
+```
+
+    上面模拟了一个数据查询的逻辑，从第一段代码中
+    可以看出逻辑被分散在各个函数当中，当异步操作多起来，
+    将会变得不好维护，但是有了generator，可以将所有的逻辑
+    封装在一个函数中，其他函数只负责数据的获取，即使异步
+    操作多起来，日后维护也没那么头疼
+
+<br/>
+
 
 ## Generator的使用
 
@@ -39,9 +105,8 @@
 
 #### next
 
-<br/>
-
-    生成器函数的内部有一个yield关键字，当执行next()时，遇到yield关键字会暂停，返回值为一个对象，有两个属性：value，done
+    生成器函数的内部有一个yield关键字，当执行next()时，遇到yield关键字会
+    暂停，返回值为一个对象，有两个属性：value，done
         value就是yield后面的值
         done表示生成器对象是否关闭
 
@@ -97,9 +162,11 @@
 
 #### throw
 
-    throw会在内部抛出一个错误，同时也相当于执行了一次next，如果错误在内部被处理了，那么还能继续执行，不然会关闭生成器对象
+    throw会在内部抛出一个错误，同时也相当于执行了一次next，
+    如果错误在内部被处理了，那么还能继续执行，不然会关闭生成器对象
 
-    这里需要注意一下，如果在未执行next的情况下，直接使用throw，相当于在外部抛出错误，因为此时Generator内部代码还未启动
+    这里需要注意一下，如果在未执行next的情况下，直接使用throw，
+    相当于在外部抛出错误，因为此时Generator内部代码还未启动
 
 ```JavaScript
     function* fun1(){
@@ -135,7 +202,8 @@
 
 ## 异步生成器
 
-    异步生成器与生成器的区别在于，调用next方法后，返回的是一个promise对象，需要在then中才能获取到IteratorResult对象
+    异步生成器与生成器的区别在于，调用next方法后，返回的是一个promise对象，
+    需要在then中才能获取到IteratorResult对象
 
 ```JavaScript
     async function* fun1(){
@@ -182,5 +250,3 @@
     let result = gen.next();
     gen.next(); // 1s后打印 1
 ```
-
-## Generator的使用场景  

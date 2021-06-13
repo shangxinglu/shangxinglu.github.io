@@ -38,13 +38,14 @@ Stream有三种类型
 
         pull(controller) 可选
             当流内部队列不满时，会重复调用这个方法，直到补满
-             controller是一个ReadableStreamDefaultController或ReadableByteStreamController类型的对象
+             controller与start中的相同
 
         cancel(reson) 可选
             当应用程序表示将取消流时，会调用此方法
 
         type 可选
-            控制正在处理的可读类型的流，如果值为bytes，则controller将是ReadableByteStreamController，不然为ReadableStreamDefaultController
+            控制正在处理的可读类型的流，如果值为bytes，则
+            controller将是ReadableByteStreamController，不然为ReadableStreamDefaultController
 
         autoAllocateChunkSize 可选
             对于字节流，可以用来打开流的自动分配功能
@@ -299,10 +300,7 @@ readableStream.cancel('reason'); // reason
 
     用来将当前管道流输入到转换流或可读可写流
 
-```JavaScript
 
-
-```
 
   pipeTo()
 
