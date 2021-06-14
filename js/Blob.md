@@ -118,8 +118,26 @@ blob.arrayBuffer().then(res => {
 ```
 
 
+## Blob转换的arrayBufff与文本的关系
 
-<br/>
+    Blob通过arrayBuffer()产生的arrayBuffer，里面存储的是文本的UTF-8编码的码点，转成UInt8Array的格式可以获取到码点数据，然后利用decodeURIComponent转成文字
 
 
-## Blob的使用场景
+```JavaScript
+    const blob = new Blob(['<h1>TEXT</h1>']);
+
+    blob.arrayBuffer().then(res => {
+        console.log(res); // ArrayBuffer(13)...
+        res = new Uint8Array(res);
+
+        let encode = '';
+        for(let item of res){
+            encode += '%'+item.toString(16);
+        }
+        console.log(decodeURIComponent(encode)); // <h1>TEXT</h1>
+    })
+
+```
+
+
+

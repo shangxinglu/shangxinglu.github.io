@@ -9,7 +9,8 @@
 
 ### 简单使用
 
-    class的实例化中，运算符()是作用是传值参数表，并没有调用函数的意义，所以不需要给构造函数传递参数表时可以不加
+    class的实例化中，运算符()是作用是传值参数表，并没有调用函数的意义，
+    所以不需要给构造函数传递参数表时可以不加
 
 ```JavaScript
     class A{
@@ -54,7 +55,9 @@
 
 ## Class继承
 
-    继承使用extends关键字，在extends后面是要继承的父类parentClass，这个父类的prototype必须是Object或者null，可以使用表达式的返回值作为父类，如果在子类中定义construct，必须先调用super
+    继承使用extends关键字，在extends后面是要继承的父类parentClass，
+    这个父类的prototype必须是Object或者null，可以使用表达式的返回值作为父类，
+    如果在子类中定义construct，必须先调用super
     
 ```JavaScript
     
@@ -86,7 +89,9 @@
 
 ### [[HomeObject]]
 
-    [[HomeObject]]是函数的一个内部插槽，当函数不是箭头函数时，用来保存在语法分析阶段确定的、声明方法时所基于的对象，默认值为undefined，[HomeObject]是不可变的，绑定的对象一般有两种
+    [[HomeObject]]是函数的一个内部插槽，当函数不是箭头函数时，
+    用来保存在语法分析阶段确定的、声明方法时所基于的对象，默认值为undefined，
+    [HomeObject]是不可变的，绑定的对象一般有两种
 
         1. 函数是对象方法
             [[HomeObject]]绑定该对象的prototype
