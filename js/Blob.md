@@ -26,7 +26,9 @@ new Blob(array,options)
 
         type:默认值'',代表了将被放入blob的数组内容的MIME编码
 
-        endings: 默认值是'transparent',指定包含结束符\n的字符串被如何写入,有两个值transparent和native
+        endings: 默认值是'transparent',指定包含结束符\n的字符串被如何写入,
+        有两个值transparent和native
+        
         transparent:代表会保持blob中的结束符不变
         native:代表结束符会被更改为合适宿主操作系统文件系统的换行符
 
