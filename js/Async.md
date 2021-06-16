@@ -8,7 +8,8 @@
 
 ## Async函数的使用
 
-    使用async关键字声明函数，内部可以使用await，注意await只能用在async函数内，async函数可以作为表达式使用
+    使用async关键字声明函数，内部可以使用await，注意await只能用在
+    async函数内，async函数可以作为表达式使用
 
 
 ```JavaScript
@@ -29,7 +30,9 @@
 
 ## Async函数的执行过程
 
-    async函数在遇到await后，会返回一个promise，剩余代码会作为这个promise的resolve置值器运行，也就是then的回调函数体，也就意味着剩余代码会被作为微任务放入任务队列中
+    async函数在遇到await后，会返回一个promise，剩余代码会作为这个
+    promise的resolve置值器运行，也就是then的回调函数体，
+    也就意味着剩余代码会被作为微任务放入任务队列中
 
     以下两段代码等效的
 
@@ -81,5 +84,7 @@ p1.catch(()=>{
 
 ## await关键字后面不同的数据类型会有什么不一样么
 
-    await value相当于Promise.resolve(value)，所以不同数据类型的规则跟Promise.resolve()一样，只是await还会将微任务添加到任务队列，同时挂起函数
+    await value相当于Promise.resolve(value)，所以不同数据类型的规则
+    跟Promise.resolve()一样，只是await还会将微任务添加到任务队列，
+    同时挂起函数
 

@@ -59,7 +59,7 @@
         console.log('rejected');
     }); // rejected
 ```
-    then调用后会会返回一个新的promise
+    then调用后会返回一个新的promise
 
 ```JavaScript
     let res = null;
@@ -82,7 +82,7 @@
 
   当then中的函数接受的参数为一个Promise对象，会有几种情况
 
-    Promise(后面简称p1)为fulfilled状态，then返回的Promise对象(后面简称p2)的状态会
+    如果接受的参数Promise(后面简称p1)为fulfilled状态，then返回的Promise对象(后面简称p2)的状态会
     变为fulfilled，p1传给then回调函数的参数值作为p2的then回调函数的参数值
 
 ```JavaScript

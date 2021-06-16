@@ -103,7 +103,9 @@
 
 ### Super的执行过程
 
-    super的查找就是利用[[HomeObject]]，会先通过[[HomeObject]]找到绑定该方法的对象(obj)，然后再查找到obj的[[prototype]]，这样就找到了父类，由于[[HomeObject]]是固定不变的，所以super也是不变的
+    super的查找就是利用[[HomeObject]]，会先通过[[HomeObject]]找到绑定该方法的对象(obj)，
+    然后再查找到obj的[[prototype]]，这样就找到了父类，
+    由于[[HomeObject]]是固定不变的，所以super也是不变的
 
 ```JavaScript
     const obj1 = {

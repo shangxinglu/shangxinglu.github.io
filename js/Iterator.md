@@ -17,7 +17,8 @@
 
 ### 迭代器协议
 
-    迭代器是一种一次性使用的对象，迭代器对象必须要有next方法，该方法的返回值必须是IteratorResult对象(就是含有done和value属性的对象)
+    迭代器是一种一次性使用的对象，迭代器对象必须要有next方法，该方法
+    的返回值必须是IteratorResult对象(就是含有done和value属性的对象)
 
 
 ```JavaScript
@@ -111,7 +112,7 @@ for(let item of obj){
 
         // item 赋值过程
         // let iterator = obj[Symbol.asyncIterator]();
-        // let {value:item} = await Promise.resolve(iterator.next());
+        // let {value:item} = await iterator.next();
         // console.log(item);
     }
 
