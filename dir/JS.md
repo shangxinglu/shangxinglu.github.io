@@ -1,4 +1,4 @@
-## [this](../js/this.md)
+## [this](../js/this)
 
 ## [Event Loop](../js/eventLoop)
 
@@ -22,16 +22,18 @@
 
 ## [Object](../js/Object)
 
-## [Closure](../js/Closure.md)
+## [Closure](../js/Closure)
 
-## [ArrayBuffer](../js/ArrayBuffer.md)
+## [ArrayBuffer](../js/ArrayBuffer)
 
-## [JSON](../js/JSON.md)
+## [JSON](../js/JSON)
 
-## [DOM](../js/DOM.md)
+## [DOM](../js/DOM)
 
-## [RegExp](../js/RegExp.md)
+## [RegExp](../js/RegExp)
 
-## [JavaScript与字符集](../js/JavaScript与字符集.md)
+## [JavaScript与字符集](../js/JavaScript与字符集)
+
+## [设计模式](../js/设计模式)
 
 
