@@ -6,5 +6,7 @@
 
 ## [Browser](/dir/Browser.md)
 
+## [Canvas](/dir/Canvas.md)
+
 
 
