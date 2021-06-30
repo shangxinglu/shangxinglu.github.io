@@ -8,5 +8,7 @@
 
 ## [Canvas](/dir/Canvas.md)
 
+## [Tool](/dir/Tool.md)
+
 
 
