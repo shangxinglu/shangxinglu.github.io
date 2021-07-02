@@ -36,4 +36,15 @@
 
 ## [设计模式](../js/设计模式)
 
+## [Reflect](/js/Reflect.md)
+
+## [Proxy](/js/Proxy.md)
+
+## [Set与WeakSet](/js/Set与WeakSet.md)
+
+## [Map与WeakMap](/js/Map与WeakMap.md)
+
+## [Symbol](/js/Symbol.md)
+
+
 
