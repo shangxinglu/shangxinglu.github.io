@@ -40,7 +40,7 @@
 
 ## [Proxy](/js/Proxy.md)
 
-## [Set与WeakSet](../js/Set与WeakSet.md)
+## [Set与WeakSet](../js/SetAndWeakSet.md)
 
 ## [Map与WeakMap](/js/Map与WeakMap.md)
 
