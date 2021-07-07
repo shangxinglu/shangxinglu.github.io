@@ -2,6 +2,8 @@
 
 ## [JS](/dir/JS.md)
 
+## [BOM](/dir/BOM)
+
 ## [Frame](/dir/Frame.md)
 
 ## [Browser](/dir/Browser.md)
