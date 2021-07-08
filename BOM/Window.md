@@ -1,12 +1,10 @@
-# BOM
-
-## Window
+# Window
 
     window对象表示一个包含DOM文档的窗口
 
     每个标签页都有自己的window
 
-### 属性
+## 属性
 
     closed 只读
         表示当前窗口是否关闭
@@ -86,7 +84,7 @@
         获取当前窗口的父窗口对象，如果没有父窗口返回自身
     
 
-### 方法
+## 方法
     open(strUrl,strWindName[,strWindowFeatures])
         作用
             打开一个指定名称和资源的窗口
