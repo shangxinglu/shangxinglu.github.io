@@ -28,8 +28,6 @@
 
 ## [JSON](../js/JSON)
 
-## [DOM](../js/DOM)
-
 ## [RegExp](../js/RegExp)
 
 ## [JavaScript与字符集](../js/JavaScript与字符集)

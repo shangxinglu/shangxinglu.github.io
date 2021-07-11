@@ -4,6 +4,8 @@
 
 ## [BOM](/dir/BOM)
 
+## [DOM](/dir/DOM)
+
 ## [Frame](/dir/Frame.md)
 
 ## [Browser](/dir/Browser.md)

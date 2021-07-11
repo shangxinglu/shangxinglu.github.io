@@ -1,14 +1,5 @@
-# DOM
+# Node
 
-## DOM是什么
-
-    DOM的全称是Document Object Model，文档对象模型，是HTML和XML文档的
-    编程接口，为开发者提供了添加、删除、修改页面的功能，HTML和XML可以
-    用DOM表示为一个由节点构成的层级结构
-
-<br/>
-
-## Node
     Node是一个接口，各类的DOM API对象都会继承Node
 
 ## Node的类型有哪些
