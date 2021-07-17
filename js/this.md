@@ -144,38 +144,8 @@ console.log(val,obj.val); // 10 200
 
 可以从上面看到this在第三步的时候被修改了绑定
 
-  
-<br/>
-<br/>
 
-## 头脑风暴
 
-### 检验一下new绑定、显示绑定、隐式绑定、默认绑定的优先级
 
-```JavaScript
-var val = 'global';
-const obj = {val:'bind'};
-function f1(){
-    console.log(this.val);
-}
 
-const f2 = f1.bind(obj);
-
-const instance = new f2; // undefined
-
-const obj_1 = {
-    val:'implicit',
-    f2,
-    f1,
-    };
-
-obj_1.f2(); // bind
-obj_1.f1(); // implicit
-```
-
-在上面代码中，f2已被显示绑定到obj，但是在new运算符实例化f2时，val值变
-为了undefined，说明了f2的this被修改了，同时证明了new绑定的优先级大于显
-示绑定，然后在后面对f2进行了隐私绑定，但是val并未改变，证明了显示绑定的
-优先级大于隐式绑定,最后对f1函数进行了隐式绑定，但是val的值为implicit，
-证明了隐式绑定大于显示绑定
 
