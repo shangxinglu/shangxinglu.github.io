@@ -8,11 +8,12 @@
 
 ## [Frame](/dir/Frame.md)
 
-## [Browser](/dir/Browser.md)
+## [Browser](/dir/Browser)
 
-## [Canvas](/dir/Canvas.md)
+## [Canvas](/dir/Canvas)
 
-## [Tool](/dir/Tool.md)
+## [Tool](/dir/Tool)
 
+## [设计模式](/dir/设计模式)
 
 
