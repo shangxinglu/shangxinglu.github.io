@@ -5,3 +5,5 @@
 
 ## [Event](/DOM/Event)
 
+## [Document](/DOM/Document)
+
