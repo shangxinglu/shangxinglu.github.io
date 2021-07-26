@@ -1,4 +1,4 @@
-# 聊聊this
+# this
 
 ## this是什么
 
@@ -23,9 +23,11 @@ function f1(){
 f1(); // 10 
 ```
 
-默认情况下，this指向全局对象，上述代码中val在全局环境下由var声明的变
-量，会作为全局对象的属性，this默认指向全局对象window，所以
+默认情况下，this指向全局对象，上述代码中val在全局环境下由var声明的变量，
+会作为全局对象的属性，this默认指向全局对象window，所以
 this.val===window.val,f2函数中的val也是同理
+
+在严格模式下，函数内的this不会默认指向window
 
 
 ### 2.隐式绑定
