@@ -6,3 +6,5 @@
 ## [Cookie](/HTTP/Cookie)
 
 ## [跨域资源共享](/HTTP/跨域资源共享)
+
+## [Header](/HTTP/Header)
