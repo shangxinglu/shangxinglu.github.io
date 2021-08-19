@@ -67,7 +67,7 @@ for(let item of obj){
     IteratorResult对象，也可以直接返回IteratorResult对象，相当于在执行体内部先给
     item包了一层async，利用await达到了等待和包装的效果，会返回一个promise
 
-所以iterator的代码也可以直接用在asyncIterator中
+    所以iterator的代码也可以直接用在asyncIterator中
 
 ```JavaScript
 
