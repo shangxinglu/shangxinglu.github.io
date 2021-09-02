@@ -1,12 +1,14 @@
 # 温故而知新
 
-## [JS](/dir/JS.md)
+## [CSS](/dir/CSS)
+
+## [JS](/dir/JS)
 
 ## [BOM](/dir/BOM)
 
 ## [DOM](/dir/DOM)
 
-## [Frame](/dir/Frame.md)
+## [Frame](/dir/Frame)
 
 ## [Browser](/dir/Browser)
 
