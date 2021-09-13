@@ -28,6 +28,11 @@
     否定链中跟随的所有断言
 
 ### .deep
+    导致链中所有的.equal、.include、.member、.keys、.property断言使用深度相等而不是严格相等
+
+### .nested
+    在链中的所有.property和.include断言都启用`.`和括号表示法
+    不能和.own一起用
     
 
     
