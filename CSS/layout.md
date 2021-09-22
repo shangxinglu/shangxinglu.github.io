@@ -185,7 +185,35 @@
     将所有直接子节点上的align-self值设为一个组
 
 ### align-self
-    
+    对齐当前flex行中的元素，并覆盖已有的align-items的值
+    align-self不适合于块类型的盒模型
+    任何flexbox元素在测轴方向的margin值为auto，align-self会被忽略
+
+        auto
+            设置为父元素的align-items的值
+        
+        normal
+            取决于当前的布局模式
+                在绝对定位的替代元素上表现为start，在其他所有绝对定位元素上表现为stretch
+            
+        self-start
+            将项目对齐到与交叉轴中项目起始侧对应的对齐容器的边缘齐平
+        
+        self-end
+            将项目对齐到与交叉轴中项目尾侧对应的对齐容器的边缘齐平
+
+        flex-start
+            对齐到交叉轴的首端
+        
+        flex-end
+            对齐到交叉轴的末端
+        
+        center
+            对齐到交叉轴中间
+
+### place-content
+    是align-content和justify-content的简写
+
 
 ## Grid布局
     Grid布局被设计用于同时在两个维度上把元素按行和列排列整齐
