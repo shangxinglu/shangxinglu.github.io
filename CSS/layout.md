@@ -5,6 +5,7 @@
     
 ## Float浮动布局
     把一个元素浮动起来会改变该元素本身和在正常流布局中跟随他的元素的行为
+    浮动就是为了在网页中实现文本环绕图片的效果而引入的一种布局模型
 
 ## Flex弹性盒子布局
     弹性盒子布局被专门用来创建横向或纵向的一维页面布局
@@ -215,6 +216,24 @@
 ### place-content
     是align-content和justify-content的简写
 
+### row-gap
+    用来设置元素行之间的间隙
+
+        <length>
+
+        <percentage>
+            栅格容器的百分比
+
+### column-gap
+    设置元素列之间的间隙
+        <length>
+
+        <percentage>
+            栅格容器的百分比
+        
+### gap
+    是row-gap和column-gap的简写
+
 
 ## Grid布局
     Grid布局被设计用于同时在两个维度上把元素按行和列排列整齐
@@ -230,12 +249,29 @@
     relative可以修改它的最终位置，通过top、right、bottom、left设置修改元素的位置
     无论是否唯一，相对定位仍然会在文档流中占用初始空间
 
+    top、right、bottom、left为百分比是一父元素的宽高为计算依据
+
 ### absolute绝对定位
     absolute可以让元素不再存在文档流中，是独立的，通过top、right、bottom、left修改位置
+    绝对定位参照的包含块是position设置为static之外的任意值的最近的祖先元素
 
 
 ### fixed固定定位
+    固定定位元素的包含块是视口
+
 
 ### sticky粘性定位
+
+
+### z-index堆叠
+    z-index只对position不为static的元素有效
+    z-index用来设置元素的叠放顺序
+    当z-index为正数，会出现在没有设置z-index元素的上方
+    当z-index为负数，会出现在没有设置z-index元素的下方
+
+    堆叠上下文，就是每个元素本身也是一个盒子，元素的后代元素设置在这个盒子里面，
+    所以后代元素的z-index不能改变与祖先元素的兄弟元素的层叠顺序
+
+    设置opacity小于1的元素也会触发新的堆叠上下文
 
     
