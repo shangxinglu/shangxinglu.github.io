@@ -267,6 +267,8 @@
     注意，sticky元素会固定在离他最近的一个拥有滚定机制的祖先上，
     当overflow不为visible，即便不是真实可滚动的祖先，这有效的抑制了任何sticky行为
 
+    父元素会约束sticky，不管overflow为任何值，当父元素滚动离开，sticky也会离开
+
 
 ### z-index堆叠
     z-index只对position不为static的元素有效
