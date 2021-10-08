@@ -44,5 +44,7 @@
 
 ## [Symbol](/js/Symbol)
 
+## [Module](/js/Module)
+
 
 

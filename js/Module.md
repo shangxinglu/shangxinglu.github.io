@@ -64,7 +64,7 @@
 ```JavaScript
     import * as test from './test.js'
 ```
-### export与import的复合写法
+## export与import的复合写法
     需要注意，复合写法并不会在当前模块导入其他模块，只是对外转发，所以不能当前模块中使用
 
 ```JavaScript
@@ -75,3 +75,16 @@
    export {x,y}
 
 ```
+### 整体输出
+    整体输出的复合写法会忽略模块default方法
+
+```JavaScript
+    export * from './test.js'
+```
+
+### 默认接口导出
+
+```JavaScript
+    export {default} from './test.js'
+```
+
