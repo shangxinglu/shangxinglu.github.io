@@ -4,6 +4,8 @@
 
 ## [JS](/dir/JS)
 
+## [HTML](/dir/HTML)
+
 ## [BOM](/dir/BOM)
 
 ## [DOM](/dir/DOM)
