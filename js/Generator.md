@@ -36,29 +36,32 @@
 
     function* gen(){
         const id = 100;
-        const userData = yield getUserData(id);
-        const logData = yield getLogData(userData.lid);
+        const userData = yield getUserData(id,next);
+        const logData = yield getLogData(userData.lid,next);
         log(logData)
     }
 
     const query = gen();
 
-    query.next();
+    
+    const next = query.next.bind(query)
 
-    function getUserData(id){
+    next()
+
+    function getUserData(id,next){
         log('getUserData')
         setTimeout(()=>{
             const userData = {lid:20};
-            query.next(userData)
+            next(userData)
         },1000)
     }
 
-    function getLogData(id){
+    function getLogData(id,next){
         log('getLogData')
 
         setTimeout(()=>{
             const logData = {name:'logData'};
-            query.next(logData)
+            next(logData)
         },1000)
     }
 ```
