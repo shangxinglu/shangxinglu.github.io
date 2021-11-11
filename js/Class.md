@@ -91,7 +91,7 @@
 
     [[HomeObject]]是函数的一个内部插槽，当函数不是箭头函数时，
     用来保存在语法分析阶段确定的、声明方法时所基于的对象，默认值为undefined，
-    [HomeObject]是不可变的，绑定的对象一般有两种
+    [HomeObject]是不可变的，有两种比较常见得绑定
 
         1. 函数是对象方法
             [[HomeObject]]绑定该对象的prototype
@@ -104,8 +104,7 @@
 ### Super的执行过程
 
     super的查找就是利用[[HomeObject]]，会先通过[[HomeObject]]找到绑定该方法的对象(obj)，
-    然后再查找到obj的[[prototype]]，这样就找到了父类，
-    由于[[HomeObject]]是固定不变的，所以super也是不变的
+    然后再查找到obj的[[prototype]]，这样就找到了父类
 
 ```JavaScript
     const obj1 = {
