@@ -80,9 +80,7 @@
 
 ```
 
-  当then中的函数接受的参数为一个Promise对象(p1)，then会变为p1的then函数
-
-    如果接受的参数Promise(后面简称p1)
+  当Promise(p1)中的resolve中传递的参数为一个Promise对象(p2)，p1的then会变为p2的then函数
 
 ```JavaScript
     let res
