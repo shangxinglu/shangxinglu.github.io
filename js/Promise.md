@@ -80,65 +80,35 @@
 
 ```
 
-  当then中的函数接受的参数为一个Promise对象，会有几种情况
+  当then中的函数接受的参数为一个Promise对象(p1)，then会变为p1的then函数
 
-    如果接受的参数Promise(后面简称p1)为fulfilled状态，then返回的Promise对象(后面简称p2)的状态会
-    变为fulfilled，p1传给then回调函数的参数值作为p2的then回调函数的参数值
+    如果接受的参数Promise(后面简称p1)
 
 ```JavaScript
-    const p1= new Promise(resolve=>{
-        resolve('p1');
-    });
+    let res
+    const p1 = new Promise((resolve,reject)=>{
+        res = resolve
+    })
 
-    const p2= new Promise(resolve=>{
-        resolve(p1);
-    });
 
-    p2.then(res=>{
-        console.log(res); // p1
-    });
+    const p2 = new Promise((resolve,reject)=>{
+        resolve(p1)
+    })
+
+    p2.then((...arg)=>{
+        log(arg)
+        alert('ok')
+    })
+
+    function exec(){
+        res(111,222)
+    }
+
+    setTimeout(exec,1000)
 
 ```
 
-    Promise(后面简称p1)为rejected状态，then返回的Promise对象(后面简称p2)的状态会
-    变为rejected，p1传给then回调函数的参数值作为p2的then回调函数的参数值
-
-```JavaScript
-    const p1= new Promise((resolve,reject)=>{
-        reject('p1');
-    });
-
-    p1.catch(error=>{});
-
-    const p2= new Promise((resolve,reject)=>{
-        resolve(p1);
-    });
-
-    p2.catch(res=>{
-        console.log(res); // p1
-    });
-
-```
-
-    Promise(后面简称p1)为pending状态，then返回的Promise对象(后面简称p2)的状态会保
-    持pending，当p1发生状态改变，p1的传给then回调函数的参数值传给p2的then回调函数
-    的参数，变为相同状态
-
-```JavaScript
-    let res = null;
-    const p1= new Promise((resolve,reject)=>{
-        res = resolve;
-    });
-
-    const p2= new Promise((resolve,reject)=>{
-        resolve(p1);
-    });
-
-    p2.then(console.log);
-
-    res(200);  // 200
-
-```
+  
 
     当then的回调函数返回一个promise(p1)，这个then返回的promise(p2)的state和result
     都会跟p1同步，虽然p1!==p2，但是效果上相当于p1===p2，方便理解
