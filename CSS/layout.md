@@ -26,7 +26,7 @@
     relative可以修改它的最终位置，通过top、right、bottom、left设置修改元素的位置
     无论是否唯一，相对定位仍然会在文档流中占用初始空间
 
-    top、right、bottom、left为百分比是一父元素的宽高为计算依据
+    top、right、bottom、left为百分比是以父元素的宽高为计算依据
 
 ### absolute绝对定位
     absolute可以让元素不再存在文档流中，是独立的，通过top、right、bottom、left修改位置
